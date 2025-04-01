@@ -15,6 +15,11 @@ class UserCreateDto(BaseModel):
     """DTO for creating a new user."""
     email: EmailStr
     password: str
+    first_name: str = Field(..., description="User first name")
+    last_name: str = Field(..., description="User last name")
+    is_active: bool = Field(..., description="User  is active or not")
+    is_superuser: bool = Field(..., description="User is super user")
+    change_password_on_first_connection: bool = Field(..., description="change_password_on_first_connection")
 
 class UserUpdateDto(BaseModel):
     """DTO for updating a user."""
