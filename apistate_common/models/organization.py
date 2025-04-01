@@ -1,6 +1,6 @@
 from datetime import datetime
 from mongoengine import StringField
-from base import BaseDocument
+from .base import BaseDocument
 
 class Organisation(BaseDocument):
     """Organisation model representing a company or entity in the system.

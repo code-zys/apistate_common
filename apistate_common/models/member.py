@@ -1,4 +1,4 @@
-from base import BaseOrganisationDocument
+from .base import BaseOrganisationDocument
 from mongoengine import ReferenceField, EnumField
 from ..enums.member_type import MemberType
 

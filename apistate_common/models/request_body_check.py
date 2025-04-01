@@ -1,5 +1,5 @@
 from mongoengine import StringField
-from base import BaseEmbeddedDocument
+from .base import BaseEmbeddedDocument
 
 class RequestBodyCheck(BaseEmbeddedDocument):
     """RequestBodyCheck model for configuring health check body validations.

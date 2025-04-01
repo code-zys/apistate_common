@@ -1,5 +1,5 @@
 from mongoengine import StringField, ReferenceField
-from base import BaseOrganisationDocument
+from .base import BaseOrganisationDocument
 
 class Connector(BaseOrganisationDocument):
     """Connector model representing a connection configuration.

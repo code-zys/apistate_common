@@ -1,6 +1,6 @@
 from mongoengine import IntField, StringField, ListField, ReferenceField, EmbeddedDocumentField
-from base import BaseOrganisationDocument
-from request_body_check import RequestBodyCheck
+from .base import BaseOrganisationDocument
+from .request_body_check import RequestBodyCheck
 
 class HealthCheckConfig(BaseOrganisationDocument):
     """HealthCheckConfig model for configuring API health checks.

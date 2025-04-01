@@ -1,6 +1,6 @@
 from datetime import datetime
 from mongoengine import StringField, EmailField, BooleanField, ReferenceField, EnumField
-from base import BaseDocument, BaseOrganisationDocument
+from .base import BaseDocument, BaseOrganisationDocument
 
 class User(BaseDocument):
     """User model representing a user in the system.

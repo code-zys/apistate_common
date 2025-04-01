@@ -1,5 +1,5 @@
 from mongoengine import IntField, DictField, ReferenceField, EnumField
-from base import BaseOrganisationDocument
+from .base import BaseOrganisationDocument
 from ..enums.api_status import APIStatus
 
 class HealthCheckHistory(BaseOrganisationDocument):

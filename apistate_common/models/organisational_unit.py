@@ -1,6 +1,6 @@
-from base import BaseDocument
+from .base import BaseDocument
 from mongoengine import StringField
-from organization import Organisation
+from .organization import Organisation
 
 class OrganisationUnit(BaseDocument):
     """OrganisationUnit model representing a unit/department within an organisation.

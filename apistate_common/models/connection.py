@@ -1,5 +1,5 @@
 from mongoengine import StringField, ReferenceField
-from base import BaseOrganisationDocument
+from .base import BaseOrganisationDocument
 
 class Connection(BaseOrganisationDocument):
     """Connection model representing an active connection instance.

@@ -1,4 +1,4 @@
-from base import BaseOrganisationDocument
+from .base import BaseOrganisationDocument
 from mongoengine import StringField, ReferenceField
 
 class Endpoint(BaseOrganisationDocument):
