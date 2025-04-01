@@ -32,6 +32,10 @@ class BaseEmbeddedDocument(EmbeddedDocument):
     created_by = ReferenceField('User', required=True)
     updated_by = ReferenceField('User', null=True)
 
+    meta = {
+        'allow_inheritance': True
+    }
+
 class BaseOrganisationDocument(BaseDocument):
     """Base document class for organization-specific models.
     
