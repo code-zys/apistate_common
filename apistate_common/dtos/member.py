@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
-from apistate_common.enums.member_type import MemberType
+from ..enums.member_type import MemberType
 
 class MemberCreateDto(BaseModel):
     """DTO for creating a new member."""
