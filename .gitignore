@@ -1,0 +1,13 @@
+/ppta_common.egg-info/
+.idea
+.vscode
+.venv
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+*.env
+.DS_Store
