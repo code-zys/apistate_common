@@ -7,3 +7,9 @@ class OrganisationDTO(BaseDTO):
     name: str = Field(..., description="Organisation name")
     code: str = Field(..., description="Organisation unique code")
     domain: str = Field(..., description="Organisation domain")
+
+class OrganisationCreateDTO(BaseDTO):
+    """DTO for Organisation creation."""
+    name: str = Field(..., description="Organisation name")
+    code: str = Field(..., description="Organisation unique code")
+    domain: str = Field(..., description="Organisation domain")
