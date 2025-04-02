@@ -11,5 +11,6 @@ class Member(BaseOrganisationDocument):
     meta = {
         'indexes': [
             {'fields': ['user', 'organisation'], 'unique': True}
-        ]
+        ],
+        'collection': 'members',
     }

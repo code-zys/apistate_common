@@ -11,3 +11,7 @@ class Organisation(BaseDocument):
     name = StringField(unique=True)
     code = StringField(unique=True)
     domain = StringField(unique=True)
+
+    meta = {
+        'collection': 'organisations',
+    }
