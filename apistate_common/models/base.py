@@ -29,7 +29,7 @@ class BaseEmbeddedDocument(EmbeddedDocument):
     """
     created_at = IntField(default=lambda: int(datetime.utcnow().timestamp()))
     updated_at = IntField(default=lambda: int(datetime.utcnow().timestamp()))
-    created_by = ReferenceField('User', required=True)
+    created_by = ReferenceField('User', required=False)
     updated_by = ReferenceField('User', null=True)
 
     meta = {
