@@ -13,6 +13,9 @@ class BaseDocument(Document):
     updated_at = IntField(default=lambda: int(datetime.utcnow().timestamp()))
     created_by = ReferenceField('User', required=False)
     updated_by = ReferenceField('User', null=True)
+    deleted = BooleanField(default=False)
+    deleted_at = IntField(null=True)
+    deleted_by = ReferenceField('User', null=True)
 
     meta = {
         'abstract': True
