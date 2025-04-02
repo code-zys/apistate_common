@@ -28,6 +28,8 @@ class UserUpdateDto(BaseModel):
     last_name: Optional[str] = None
     is_active: Optional[bool] = None
     is_superuser: Optional[bool] = None
+    change_password_on_first_connection: Optional[bool] = None
+    hashed_password: Optional[str] = None
 
 class UserResponseDto(BaseModel):
     """DTO for user response."""
