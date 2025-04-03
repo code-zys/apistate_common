@@ -9,5 +9,6 @@ class LoginRequest(BaseModel):
 
 class PasswordChangeRequest(BaseModel):
     """DTO for password change request data."""
+    email: EmailStr
     current_password: str = Field(..., min_length=8)
     new_password: str = Field(..., min_length=8)
