@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from apistate_common.models.project import Project
+from ..models.project import Project
 from . import BaseMapper
 
 class ProjectMapper(BaseMapper):

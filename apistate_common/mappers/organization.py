@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from apistate_common.models.organization import Organization
+from ..models.organization import Organization
 from . import BaseMapper
 
 class OrganizationMapper(BaseMapper):

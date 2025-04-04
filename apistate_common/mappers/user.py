@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from apistate_common.models.user import User
+from ..models.user import User
 from . import BaseMapper
 
 class UserMapper(BaseMapper):
