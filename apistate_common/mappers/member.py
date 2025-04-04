@@ -27,7 +27,7 @@ class MemberMapper(BaseMapper):
             
             # Handle nested organization data
             if hasattr(member, 'organisation') and member.organisation:
-                data['organization'] = OrganizationMapper.to_dict(member.organisation)
+                data['organisation'] = OrganizationMapper.to_dict(member.organisation)
             
             # Convert timestamps to strings
             if 'created_at' in data:
