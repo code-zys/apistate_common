@@ -1,5 +1,5 @@
 from typing import Generic, TypeVar, Optional
-from ..enums.response_status import ResponseCode
+from ..enums.response_code import ResponseCode
 from ..enums.response_status import ResponseStatus
 
 T = TypeVar("T")
