@@ -4,7 +4,7 @@ from . import BaseMapper
 
 class OrganizationMapper(BaseMapper):
     @staticmethod
-    def to_dict(organization: Organization) -> Dict:
+    def to_dict(organization: Organisation) -> Dict:
         """Convert an Organization model instance to a dictionary.
         
         Args:
