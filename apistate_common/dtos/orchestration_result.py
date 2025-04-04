@@ -33,6 +33,7 @@ class OrchestrationResult(Generic[T]):
         """Creates a successful response with optional data and an application-specific status code."""
         return OrchestrationResult(
             data=data,
+            message=None,
             response_code=response_code,
             response_status=ResponseStatus.SUCCESS,
         )
