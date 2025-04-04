@@ -13,7 +13,10 @@ class MemberCreateDto(BaseModel):
 
 class MemberUpdateDto(BaseModel):
     """DTO for updating a member."""
-    member_type: Optional[str] = None
+    member_type: Optional[MemberType] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
 
 class UserInfo(BaseModel):
     """Nested DTO for user information."""
