@@ -18,7 +18,7 @@ class MemberUpdateDto(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     change_password_on_first_connection: bool = Optional[True]
-    member_type: Optional[MemberType]
+    type: Optional[MemberType]
 
 class UserInfo(BaseModel):
     """Nested DTO for user information."""
