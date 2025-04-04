@@ -4,8 +4,11 @@ from ..enums.member_type import MemberType
 
 class MemberCreateDto(BaseModel):
     """DTO for creating a new member."""
-    user_id: str
-    organization_id: str
+    email: str
+    password: str
+    first_name: str
+    last_name: str
+    change_password_on_first_connection: bool = True
     member_type: MemberType
 
 class MemberUpdateDto(BaseModel):
