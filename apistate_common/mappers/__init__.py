@@ -1,9 +1,11 @@
-from typing import Dict, Any
+from typing import Dict, Any, Union
+from datetime import datetime
 from bson import ObjectId
+from mongoengine import Document, EmbeddedDocument
 
 class BaseMapper:
     @staticmethod
-    def to_dict(model: Any) -> Dict:
+    def to_dict(model: Union[Document, EmbeddedDocument]) -> Dict:
         """Convert a model instance to a dictionary.
         
         Args:
@@ -22,6 +24,16 @@ class BaseMapper:
             data['id'] = str(data['_id'])
             del data['_id']
             
+        # Handle common fields from BaseDocument
+        for field in ['created_at', 'updated_at', 'deleted_at']:
+            if field in data:
+                data[field] = str(data[field])
+                
+        # Handle reference fields
+        for field in ['created_by', 'updated_by', 'deleted_by']:
+            if field in data and data[field]:
+                data[field] = str(data[field])
+                
         return data
     
     @staticmethod
