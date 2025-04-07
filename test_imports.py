@@ -1,6 +1,6 @@
 from mongoengine import connect
 from apistate_common.models.user import User
-from apistate_common.models.organization import Organisation
+from apistate_common.models.organisation import Organisation
 from apistate_common.models.project import Project
 from apistate_common.models.member import Member
 from apistate_common.models.api import API

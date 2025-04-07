@@ -1,11 +1,12 @@
-from .base import BaseDocument
+from .base import BaseOrganisationDocument
 from mongoengine import StringField
-from .organization import Organisation
+from .organisation import Organisation
 
-class OrganisationUnit(BaseDocument):
+class OrganisationalUnit(BaseOrganisationDocument):
     """OrganisationUnit model representing a unit/department within an organisation.
     """
-    name = StringField()
+    name = StringField(required=True)
+    description = StringField()
     organisation = ReferenceField(Organisation, required=True)
 
     meta = {

@@ -1,8 +1,8 @@
 from typing import Dict, Any
-from ..models.organization import Organisation
+from ..models.organisation import Organisation
 from . import BaseMapper
 
-class OrganizationMapper(BaseMapper):
+class OrganisationMapper(BaseMapper):
     @staticmethod
     def to_dict(organization: Organisation) -> Dict:
         """Convert an Organization model instance to a dictionary.

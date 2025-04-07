@@ -2,7 +2,7 @@ from typing import Dict, Any
 from ..models.member import Member
 from . import BaseMapper
 from .user import UserMapper
-from .organization import OrganizationMapper
+from .organisation import OrganizationMapper
 
 class MemberMapper(BaseMapper):
     @staticmethod
