@@ -7,7 +7,6 @@ class OrganisationalUnit(BaseOrganisationDocument):
     """
     name = StringField(required=True)
     description = StringField()
-    organisation = ReferenceField(Organisation, required=True)
 
     meta = {
         'indexes': [
