@@ -1,18 +1,20 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
-class OrganisationUnitBaseDto(BaseModel):
+class OrganisationalUnitBaseDto(BaseModel):
     """Base DTO for OrganisationUnit with common fields."""
     name: str
+    description: Optional[str] = None
 
-class OrganisationUnitCreateDto(OrganisationUnitBaseDto):
+class OrganisationalUnitCreateDto(OrganisationalUnitBaseDto):
     """DTO for creating a new OrganisationUnit."""
 
-class OrganisationUnitUpdateDto(BaseModel):
+class OrganisationalUnitUpdateDto(BaseModel):
     """DTO for updating an existing OrganisationUnit."""
     name: Optional[str] = None
+    description: Optional[str] = None
 
-class OrganisationUnitResponseDto(OrganisationUnitBaseDto):
+class OrganisationalUnitResponseDto(OrganisationalUnitBaseDto):
     """DTO for OrganisationUnit response."""
     id: str
     organisation: str
