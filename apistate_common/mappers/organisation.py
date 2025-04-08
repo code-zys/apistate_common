@@ -19,12 +19,6 @@ class OrganisationMapper(BaseMapper):
         data = BaseMapper.to_dict(organization)
         
         if data:
-            # Convert timestamps to strings
-            if 'created_at' in data:
-                data['created_at'] = str(data['created_at'])
-            if 'updated_at' in data:
-                data['updated_at'] = str(data['updated_at'])
-                
             # Handle any nested relationships if needed
             if 'parent' in data and data['parent']:
                 data['parent'] = str(data['parent'])

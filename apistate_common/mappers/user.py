@@ -21,13 +21,9 @@ class UserMapper(BaseMapper):
         # Format specific user fields if needed
         if data:
             # Ensure sensitive fields are not included
-            if 'password' in data:
-                del data['password']
-                
-            # Convert timestamps to strings if present
-            if 'created_at' in data:
-                data['created_at'] = str(data['created_at'])
-            if 'updated_at' in data:
-                data['updated_at'] = str(data['updated_at'])
-                
+            if 'hashed_password' in data:
+                del data['hashed_password']
+            
+            if 'organisation' in data and data['organisation']:
+                data['organisation'] = str(data['organisation'])
         return data

@@ -29,12 +29,6 @@ class MemberMapper(BaseMapper):
             if hasattr(member, 'organisation') and member.organisation:
                 data['organisation'] = OrganizationMapper.to_dict(member.organisation)
             
-            # Convert timestamps to strings
-            if 'created_at' in data:
-                data['created_at'] = str(data['created_at'])
-            if 'updated_at' in data:
-                data['updated_at'] = str(data['updated_at'])
-                
             # Ensure type is properly formatted
             if 'type' in data:
                 data['type'] = str(data['type'])

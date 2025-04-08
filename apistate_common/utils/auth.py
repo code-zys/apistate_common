@@ -2,6 +2,8 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from typing import Optional, List
 from pydantic import BaseModel
+from jose import JWTError, jwt
+from datetime import datetime
 
 class TokenData(BaseModel):
     sub: str
@@ -12,64 +14,83 @@ class TokenData(BaseModel):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-def get_current_user(token: str = Depends(oauth2_scheme), verify_token=None, get_user_by_email=None):
+def verify_token(token: str, secret_key: str, algorithm: str = "HS256") -> dict:
+    """
+    Verify and decode JWT token
+    
+    Args:
+        token: JWT token to verify
+        secret_key: Secret key used to sign the token
+        algorithm: Algorithm used to sign the token (default: HS256)
+        
+    Returns:
+        dict: Decoded token payload
+        
+    Raises:
+        HTTPException: If token is invalid or expired
+    """
+    try:
+        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
+        
+        # Verify required claims
+        if "sub" not in payload:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token claims",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+            
+        # Verify expiration
+        exp = payload.get("exp")
+        if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token has expired",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+            
+        return payload
+        
+    except JWTError as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},)
+        
+def get_current_user(token: str = Depends(oauth2_scheme), secret_key: str = None):
     """
     Get current user from JWT token
     
     Args:
         token: JWT token from request
-        verify_token: Function to verify JWT token
-        get_user_by_email: Function to get user by email
+        secret_key: Secret key used to sign the token
         
     Returns:
-        User object if token is valid
+        dict: Token payload if token is valid
         
     Raises:
-        HTTPException: If token is invalid or user not found
+        HTTPException: If token is invalid
     """
-    if not verify_token or not get_user_by_email:
-        raise ValueError("verify_token and get_user_by_email functions must be provided")
+    if not secret_key:
+        raise ValueError("secret_key must be provided")
         
-    payload = verify_token(token)
-    user = get_user_by_email(payload["sub"])
-    if user is None:
-        raise HTTPException(
-            status_code=404,
-            detail="User not found",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return user
-
-def get_current_active_user(current_user, is_active_field: str = "is_active"):
-    """
-    Check if current user is active
-    
-    Args:
-        current_user: User object to check
-        is_active_field: Name of the field that indicates if user is active
-        
-    Returns:
-        User object if active
-        
-    Raises:
-        HTTPException: If user is inactive
-    """
-    if not getattr(current_user, is_active_field, True):
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return current_user
+    payload = verify_token(token, secret_key)
+    return payload
 
 def validate_organization_access(token: str = Depends(oauth2_scheme), 
-                              verify_token=None,
+                              secret_key: str = None,
                               allowed_member_types: List[str] = None,
-                              request = None):
+                              request = None,
+                              org_id_param: str = "organisation_id"):
     """
     Validate organization access and member type from JWT token
     
     Args:
         token: JWT token from request
-        verify_token: Function to verify JWT token
+        secret_key: Secret key used to sign the token
         allowed_member_types: List of allowed member types. If empty, all types are allowed
-        organisation_id: Organization ID to validate against token
+        request: FastAPI request object containing path parameters
+        org_id_param: Name of the path parameter containing organization ID (default: 'organisation_id')
         
     Returns:
         dict: Token payload if validation successful
@@ -77,21 +98,21 @@ def validate_organization_access(token: str = Depends(oauth2_scheme),
     Raises:
         HTTPException: If token is invalid or access is denied
     """
-    if not verify_token:
-        raise ValueError("verify_token function must be provided")
+    if not secret_key:
+        raise ValueError("secret_key must be provided")
         
     try:
-        payload = verify_token(token)
+        payload = verify_token(token, secret_key)
         
         # Extract and validate organization ID from path parameters
-        if not request or not hasattr(request, "path_params") or "organisation_id" not in request.path_params:
+        if not request or not hasattr(request, "path_params") or org_id_param not in request.path_params:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Organization ID is required in path parameters",
                 headers={"WWW-Authenticate": "Bearer"},
             )
             
-        organisation_id = request.path_params["organisation_id"]
+        organisation_id = request.path_params[org_id_param]
         token_org_id = payload.get("organisation_id")
         if not token_org_id or token_org_id != organisation_id:
             raise HTTPException(
