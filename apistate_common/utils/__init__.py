@@ -1,4 +1,4 @@
-from .auth import get_current_user, get_current_active_user
+from .auth import get_current_user
 from .password import get_password_hash, verify_password
 from .jwt import JWTHandler
 from .db import DatabaseHandler
