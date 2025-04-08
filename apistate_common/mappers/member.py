@@ -2,7 +2,7 @@ from typing import Dict, Any
 from ..models.member import Member
 from . import BaseMapper
 from .user import UserMapper
-from .organisation import OrganizationMapper
+from .organisation import OrganisationMapper
 
 class MemberMapper(BaseMapper):
     @staticmethod
@@ -27,7 +27,7 @@ class MemberMapper(BaseMapper):
             
             # Handle nested organization data
             if hasattr(member, 'organisation') and member.organisation:
-                data['organisation'] = OrganizationMapper.to_dict(member.organisation)
+                data['organisation'] = OrganisationMapper.to_dict(member.organisation)
             
             # Ensure type is properly formatted
             if 'type' in data:
