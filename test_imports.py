@@ -2,7 +2,6 @@ from mongoengine import connect
 from apistate_common.models.user import User
 from apistate_common.models.organisation import Organisation
 from apistate_common.models.project import Project
-from apistate_common.models.member import Member
 from apistate_common.models.api import API
 from apistate_common.models.connector import Connector
 from apistate_common.models.connection import Connection
@@ -23,7 +22,6 @@ def test_imports():
         assert hasattr(User, 'email'), "User model missing email field"
         assert hasattr(Organisation, 'name'), "Organisation model missing name field"
         assert hasattr(Project, 'name'), "Project model missing name field"
-        assert hasattr(Member, 'user'), "Member model missing user field"
         assert hasattr(API, 'name'), "API model missing name field"
         assert hasattr(Connector, 'name'), "Connector model missing name field"
         assert hasattr(Connection, 'name'), "Connection model missing name field"
