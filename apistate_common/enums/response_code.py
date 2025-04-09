@@ -5,7 +5,7 @@ class ResponseCode(Enum):
     UNKNOWN = "UNKNOWN"
     SUCCESS = "SUCCESS"
     FAILURE = "FAILURE"
-
+    NOT_FOUND = "NOT_FOUND"
     # Authentication
     LOGIN_SUCCESS = "LOGIN_SUCCESS"
     LOGIN_FAILED = "LOGIN_FAILED"
