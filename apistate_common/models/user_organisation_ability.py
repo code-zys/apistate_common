@@ -1,4 +1,4 @@
-from mongoengine import Document, ReferenceField, BooleanField
+from mongoengine import Document, ReferenceField, BooleanField, ListField
 from ..enums.organisation_permission import OrganisationPermission
 from .base import BaseOrganisationDocument
 from .permission import OrganisationPermission
