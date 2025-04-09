@@ -1,10 +1,10 @@
-from mongoengine import Document, ReferenceField, BooleanField, ListField
+from mongoengine import Document, ReferenceField, BooleanField, ListField, EmbeddedDocumentField
 from .base import BaseOrganisationDocument
 from .permission import OrganisationalUnitPermission
 
 class UserOrganisationalUnitAbility(BaseOrganisationDocument):
     user = ReferenceField('User', required=True)
-    permissions = ListField(ReferenceField(OrganisationalUnitPermission), default=[], required=True)
+    permissions = ListField(EmbeddedDocumentField(OrganisationalUnitPermission), default=[], required=True)
     
     meta = {
         'collection': 'user_organisation_abilities',
