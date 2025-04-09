@@ -7,7 +7,7 @@ class UserOrganisationalUnitAbility(BaseOrganisationDocument):
     permissions = ListField(EmbeddedDocumentField(OrganisationalUnitPermission), default=[], required=True)
     
     meta = {
-        'collection': 'user_organisation_abilities',
+        'collection': 'user_organisation_unit_abilities',
         'indexes': [
             {'fields': ['user', 'organisation'], 'unique': True}
         ]
