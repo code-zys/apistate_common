@@ -1,6 +1,6 @@
 from typing import List
 from pydantic import BaseModel
-from ..enums.organisation_permission import OrganisationPermission
+from .permission import OrganisationPermissionDTO
 
 class OrganisationAbilityUpdateRequest(BaseModel):
-    permissions: List[OrganisationPermission]
+    permissions: List[OrganisationPermissionDTO]
