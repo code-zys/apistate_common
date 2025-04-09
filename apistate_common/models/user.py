@@ -3,7 +3,7 @@ from mongoengine import StringField, EmailField, BooleanField, ReferenceField, E
 from .base import BaseDocument, BaseOrganisationDocument
 from ..enums.user_type import UserType
 
-class User(BaseOrganisationDocument):
+class User(BaseDocument):
     """User model representing a user in the system.
     
     This model stores user information and authentication details.
@@ -13,7 +13,7 @@ class User(BaseOrganisationDocument):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
     is_active = BooleanField(default=True, required=True)
-    type = EnumField(UserType, default=UserType.MEMBER, required=True)
+    type = EnumField(UserType, default=UserType.USER, required=True) #TODO: helps to chefk if user can manage users or not
     change_password_on_first_connection = BooleanField(default=True)
 
     meta = {
