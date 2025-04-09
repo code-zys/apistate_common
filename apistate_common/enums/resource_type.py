@@ -2,10 +2,10 @@ from enum import Enum
 
 class OrganisationResourceType(Enum):
     ORGANISATION = "ORGANISATION"
-    ORGANISATIONAL_UNIT = "ORGANISATIONAL_UNIT"
+    ALL = "*"
 
 
 
 class OrganisationalUnitResourceType(Enum):
-    ORGANISATION = "ORGANISATION"
     ORGANISATIONAL_UNIT = "ORGANISATIONAL_UNIT"
+    ALL = "*"
