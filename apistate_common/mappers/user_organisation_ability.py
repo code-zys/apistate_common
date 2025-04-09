@@ -25,5 +25,7 @@ class UserOrganisationAbilityMapper(BaseMapper):
         # Convert permissions to list of dictionaries
         if 'permissions' in data:
             data['permissions'] = [BaseMapper.to_dict(perm) for perm in model.permissions]
-            
+        
+        if 'organisation' in data and data['organisation']:
+                data['organisation'] = str(data['organisation'])
         return data
