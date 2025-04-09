@@ -21,8 +21,8 @@ class UserMapper(BaseMapper):
         # Format specific user fields if needed
         if data:
             # Ensure sensitive fields are not included
-            if 'hashed_password' in data:
-                del data['hashed_password']
+            # if 'hashed_password' in data:
+            #     del data['hashed_password']
             
             if 'organisation' in data and data['organisation']:
                 data['organisation'] = str(data['organisation'])
