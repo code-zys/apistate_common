@@ -1,5 +1,5 @@
 from datetime import datetime
-from mongoengine import StringField, EmailField, BooleanField, ReferenceField, EnumField
+from mongoengine import StringField, EmailField, BooleanField, ReferenceField, EnumField, IntField
 from .base import BaseDocument, BaseOrganisationDocument
 from ..enums.user_type import UserType
 
