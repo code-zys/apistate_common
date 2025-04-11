@@ -5,7 +5,7 @@ from .permission import OrganisationPermission
 
 class UserOrganisationAbility(BaseOrganisationDocument):
     user = ReferenceField('User', required=True)
-    permissions = ListField(EmbeddedDocumentField(OrganisationPermission), default=[], required=True)
+    permissions = ListField(EmbeddedDocumentField(OrganisationPermission), default=[], required=False)
     
     meta = {
         'collection': 'user_organisation_abilities',
