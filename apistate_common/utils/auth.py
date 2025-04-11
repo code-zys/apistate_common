@@ -4,6 +4,7 @@ from typing import Optional, List
 from pydantic import BaseModel
 from jose import JWTError, jwt
 from datetime import datetime
+from apistate_common.dtos.token import UserTokenDto
 
 class TokenData(BaseModel):
     sub: str
@@ -57,25 +58,43 @@ def verify_token(token: str, secret_key: str, algorithm: str = "HS256") -> dict:
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},)
         
-def get_current_user(token: str = Depends(oauth2_scheme), secret_key: str = None):
+def get_current_user(secret_key: str = None):
     """
-    Get current user from JWT token
+    Factory function that returns a function to get current user from JWT token
     
     Args:
-        token: JWT token from request
         secret_key: Secret key used to sign the token
         
     Returns:
-        dict: Token payload if token is valid
+        function: A function that takes a token and returns UserTokenDto
         
     Raises:
-        HTTPException: If token is invalid
+        ValueError: If secret_key is not provided
     """
     if not secret_key:
         raise ValueError("secret_key must be provided")
         
-    payload = verify_token(token, secret_key)
-    return payload
+    def get_user(token: str = Depends(oauth2_scheme)) -> UserTokenDto:
+        """
+        Get current user from JWT token
+        
+        Args:
+            token: JWT token from request
+            
+        Returns:
+            UserTokenDto: User token data transfer object
+            
+        Raises:
+            HTTPException: If token is invalid
+        """
+        payload = verify_token(token, secret_key)
+        return UserTokenDto(
+            sub=payload["sub"],
+            user_id=payload["user_id"],
+            email=payload["sub"],
+            type=payload["type"]
+        )
+    return get_user
 
 def validate_organization_access(token: str = Depends(oauth2_scheme), 
                               secret_key: str = None,
