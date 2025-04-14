@@ -4,7 +4,7 @@ from ..enums.resource_type import OrganisationResourceType, OrganisationalUnitRe
 
 
 class OrganisationPermissionDTO(BaseModel):
-    action: PermissionAction
+    actions: list[PermissionAction]
     resource_type: OrganisationResourceType
 
     class Config:
