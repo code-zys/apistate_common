@@ -18,7 +18,8 @@ class BaseDocument(Document):
     deleted_by = ReferenceField('User', null=True)
 
     meta = {
-        'abstract': True
+        'abstract': True,
+        'strict': False
     }
 
     def save(self, *args, **kwargs):
