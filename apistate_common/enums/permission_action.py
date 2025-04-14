@@ -5,4 +5,4 @@ class PermissionAction(Enum):
     READ = "READ"
     UPDATE = "UPDATE"
     DELETE = "DELETE"
-    ALL = "*"
+    ALL = "ALL"
