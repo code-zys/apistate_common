@@ -7,7 +7,7 @@ from datetime import datetime
 from apistate_common.dtos.token import UserTokenDto
 from apistate_common.enums.user_type import UserType
 from apistate_common.dtos.permission import OrganisationPermissionDTO, OrganisationalUnitPermissionDTO
-from apistate_common.utils.token_validator import BaseTokenValidator
+from .token_validator import BaseTokenValidator
 
 class TokenData(BaseModel):
     sub: str
