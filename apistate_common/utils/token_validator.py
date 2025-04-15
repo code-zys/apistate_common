@@ -1,8 +1,8 @@
 from typing import List, Optional, Union
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
-from apistate_common.dtos.permission import OrganisationPermissionDTO, OrganisationalUnitPermissionDTO
-from apistate_common.utils.auth import verify_token
+from ..dtos.permission import OrganisationPermissionDTO, OrganisationalUnitPermissionDTO
+from ..utils.auth import verify_token
 
 class BaseTokenValidator:
     def __init__(self, secret_key: str):
