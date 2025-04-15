@@ -1,10 +1,13 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Header
 from fastapi.security import OAuth2PasswordBearer
 from typing import Optional, List
 from pydantic import BaseModel
 from jose import JWTError, jwt
 from datetime import datetime
 from apistate_common.dtos.token import UserTokenDto
+from apistate_common.enums.user_type import UserType
+from apistate_common.dtos.permission import OrganisationPermissionDTO, OrganisationalUnitPermissionDTO
+from apistate_common.utils.token_validator import BaseTokenValidator
 
 class TokenData(BaseModel):
     sub: str
@@ -58,12 +61,14 @@ def verify_token(token: str, secret_key: str, algorithm: str = "HS256") -> dict:
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},)
         
-def get_current_user(secret_key: str = None):
+
+def get_current_user(secret_key: str, allowed_types: List[UserType] = None):
     """
     Factory function that returns a function to get current user from JWT token
     
     Args:
         secret_key: Secret key used to sign the token
+        allowed_types: List of allowed user types. If empty or None, all types are allowed
         
     Returns:
         function: A function that takes a token and returns UserTokenDto
@@ -85,76 +90,50 @@ def get_current_user(secret_key: str = None):
             UserTokenDto: User token data transfer object
             
         Raises:
-            HTTPException: If token is invalid
+            HTTPException: If token is invalid or user type not authorized
         """
         payload = verify_token(token, secret_key)
-        return UserTokenDto(
-            sub=payload["sub"],
-            user_id=payload["user_id"],
-            email=payload["sub"],
-            type=payload["type"]
-        )
-    return get_user
-
-def validate_organization_access(token: str = Depends(oauth2_scheme), 
-                              secret_key: str = None,
-                              allowed_member_types: List[str] = None,
-                              request = None,
-                              org_id_param: str = "organisation_id"):
-    """
-    Validate organization access and member type from JWT token
-    
-    Args:
-        token: JWT token from request
-        secret_key: Secret key used to sign the token
-        allowed_member_types: List of allowed member types. If empty, all types are allowed
-        request: FastAPI request object containing path parameters
-        org_id_param: Name of the path parameter containing organization ID (default: 'organisation_id')
+        user_type = payload.get("type")
         
-    Returns:
-        dict: Token payload if validation successful
-        
-    Raises:
-        HTTPException: If token is invalid or access is denied
-    """
-    if not secret_key:
-        raise ValueError("secret_key must be provided")
-        
-    try:
-        payload = verify_token(token, secret_key)
-        
-        # Extract and validate organization ID from path parameters
-        if not request or not hasattr(request, "path_params") or org_id_param not in request.path_params:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Organization ID is required in path parameters",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-            
-        organisation_id = request.path_params[org_id_param]
-        token_org_id = payload.get("organisation_id")
-        if not token_org_id or token_org_id != organisation_id:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Access denied for this organization",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        
-        # Validate member type if specified and not empty
-        if allowed_member_types and len(allowed_member_types) > 0:
-            member_type = payload.get("member_type")
-            if not member_type or member_type not in allowed_member_types:
+        # Validate user type if allowed_types is specified and not empty
+        if allowed_types and len(allowed_types) > 0:
+            if not user_type or user_type not in [t.value for t in allowed_types]:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
                     detail="User type not authorized for this operation",
                     headers={"WWW-Authenticate": "Bearer"},
                 )
-                
-        return payload
         
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=str(e),
-            headers={"WWW-Authenticate": "Bearer"},
+        return UserTokenDto(
+            sub=payload["sub"],
+            user_id=payload["user_id"],
+            email=payload["sub"],
+            type=user_type
         )
+    return get_user
+
+
+def validate_organisation_token(secret_key: str, required_abilities: List[OrganisationPermissionDTO] = None):
+    validator = BaseTokenValidator(secret_key)
+    
+    async def validate(organisation_token: str = Header(None, alias="OrganisationToken"), request = None):
+        return await validator.validate_token(
+            token=organisation_token,
+            request=request,
+            required_abilities=required_abilities,
+            id_param="organisation_id"
+        )
+    return validate
+
+def validate_organisational_unit_token(secret_key: str, required_abilities: List[OrganisationalUnitPermissionDTO] = None):
+    validator = BaseTokenValidator(secret_key)
+    
+    async def validate(organisational_unit_token: str = Header(None, alias="OrganisationalUnitToken"), request = None):
+        return await validator.validate_token(
+            token=organisational_unit_token,
+            request=request,
+            required_abilities=required_abilities,
+            id_param="organisational_unit_id"
+        )
+    return validate
+

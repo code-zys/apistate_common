@@ -12,7 +12,7 @@ class OrganisationPermissionDTO(BaseModel):
 
 
 class OrganisationalUnitPermissionDTO(BaseModel):
-    action: PermissionAction
+    actions: list[PermissionAction]
     resource_type: OrganisationalUnitResourceType
 
     class Config:
