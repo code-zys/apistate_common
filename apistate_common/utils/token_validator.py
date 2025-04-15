@@ -2,13 +2,57 @@ from typing import List, Optional, Union
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
 from ..dtos.permission import OrganisationPermissionDTO, OrganisationalUnitPermissionDTO
-from .auth import verify_token
 
 class BaseTokenValidator:
     def __init__(self, secret_key: str):
         if not secret_key:
             raise ValueError("secret_key must be provided")
         self.secret_key = secret_key
+    
+    @staticmethod
+    def verify_token(token: str, secret_key: str, algorithm: str = "HS256") -> dict:
+        """
+        Verify and decode JWT token
+        
+        Args:
+            token: JWT token to verify
+            secret_key: Secret key used to sign the token
+            algorithm: Algorithm used to sign the token (default: HS256)
+            
+        Returns:
+            dict: Decoded token payload
+            
+        Raises:
+            HTTPException: If token is invalid or expired
+        """
+        try:
+            payload = jwt.decode(token, secret_key, algorithms=[algorithm])
+            
+            # Verify required claims
+            if "sub" not in payload:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid token claims",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+                
+            # Verify expiration
+            exp = payload.get("exp")
+            if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token has expired",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+                
+            return payload
+            
+        except JWTError as e:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not validate credentials",
+                headers={"WWW-Authenticate": "Bearer"},)
+        
 
     async def validate_token(self, token: str, request, required_abilities: Optional[List[Union[OrganisationPermissionDTO, OrganisationalUnitPermissionDTO]]] = None, id_param: str = None):
         if not token:

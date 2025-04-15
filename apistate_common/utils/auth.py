@@ -18,49 +18,6 @@ class TokenData(BaseModel):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-def verify_token(token: str, secret_key: str, algorithm: str = "HS256") -> dict:
-    """
-    Verify and decode JWT token
-    
-    Args:
-        token: JWT token to verify
-        secret_key: Secret key used to sign the token
-        algorithm: Algorithm used to sign the token (default: HS256)
-        
-    Returns:
-        dict: Decoded token payload
-        
-    Raises:
-        HTTPException: If token is invalid or expired
-    """
-    try:
-        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
-        
-        # Verify required claims
-        if "sub" not in payload:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token claims",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-            
-        # Verify expiration
-        exp = payload.get("exp")
-        if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Token has expired",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-            
-        return payload
-        
-    except JWTError as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},)
-        
 
 def get_current_user(secret_key: str, allowed_types: List[UserType] = None):
     """
@@ -92,7 +49,7 @@ def get_current_user(secret_key: str, allowed_types: List[UserType] = None):
         Raises:
             HTTPException: If token is invalid or user type not authorized
         """
-        payload = verify_token(token, secret_key)
+        payload = BaseTokenValidator.verify_token(token, secret_key)
         user_type = payload.get("type")
         
         # Validate user type if allowed_types is specified and not empty
