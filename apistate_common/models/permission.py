@@ -16,5 +16,5 @@ class OrganisationalUnitPermission(BaseEmbeddedDocument):
     """
     Embedded model for Permission with action and resource fields of organisational unit
     """
-    action = StringField(required=True, choices=[action.value for action in PermissionAction])
+    actions = ListField(StringField(required=True, choices=[action.value for action in PermissionAction]),default=[])
     resource_type = StringField(required=True, choices=[res_type.value for res_type in OrganisationalUnitResourceType])
