@@ -28,4 +28,8 @@ class UserOrganisationalUnitAbilityMapper(BaseMapper):
         
         if 'organisation' in data and data['organisation']:
                 data['organisation'] = str(data['organisation'])
+
+        if 'organisational_unit' in data and data['organisational_unit']:
+                data['organisational_unit'] = str(data['organisational_unit'])
+
         return data
