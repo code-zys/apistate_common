@@ -12,5 +12,10 @@ class OrganisationResourceType(Enum):
     APIS = "APIS"
 
 class OrganisationalUnitResourceType(Enum):
-    ORGANISATIONAL_UNIT = "ORGANISATIONAL_UNIT"
-    ALL = "ALL"
+    ORGANISATION = "ORGANISATION"
+    DETAILS = "DETAILS"
+    HABILITATION = "HABILITATION"
+    CONNECTORS = "CONNECTORS"
+    CONNECTIONS = "CONNECTIONS"
+    PROJECTS = "PROJECTS"
+    APIS = "APIS"
