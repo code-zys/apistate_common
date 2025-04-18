@@ -13,5 +13,6 @@ class Project(BaseOrganisationDocument):
     meta = {
         'indexes': [
             {'fields': ['name', 'organisation'], 'unique': True}
-        ]
+        ],
+        'collection': 'projects',
     }

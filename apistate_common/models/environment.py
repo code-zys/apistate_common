@@ -10,5 +10,6 @@ class Environment(BaseOrganisationDocument):
     meta = {
         'indexes': [
             {'fields': ['name', 'organisation'], 'unique': True}
-        ]
+        ],
+        'collection': 'environments',
     }
