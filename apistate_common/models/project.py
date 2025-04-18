@@ -5,6 +5,7 @@ class Project(BaseOrganisationDocument):
     """Project model representing a project within an organisation.
     """
     name = StringField()
+    description = StringField()
     environment = ReferenceField('Environment')
     config_file_url = StringField()
     organisational_unit = ReferenceField('OrganisationalUnit', required=False)
