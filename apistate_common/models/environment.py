@@ -5,6 +5,7 @@ class Environment(BaseOrganisationDocument):
     """Environment model representing different deployment environments.
     """
     name = StringField()
+    organisational_unit = ReferenceField('OrganisationalUnit', required=False)
 
     meta = {
         'indexes': [

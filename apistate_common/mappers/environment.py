@@ -1,22 +1,22 @@
 from typing import Dict, Any
-from ..models.project import Project
+from ..models.environment import Environment
 from . import BaseMapper
 
-class ProjectMapper(BaseMapper):
+class EnvironmentMapper(BaseMapper):
     @staticmethod
-    def to_dict(project: Project) -> Dict:
-        """Convert a Project model instance to a dictionary.
+    def to_dict(environment: Environment) -> Dict:
+        """Convert an Environment model instance to a dictionary.
         
         Args:
-            project: The Project model instance to convert
+            environment: The Environment model instance to convert
             
         Returns:
-            Dict containing the project data with proper ID handling
+            Dict containing the environment data with proper ID handling
         """
-        if not project:
+        if not environment:
             return None
             
-        data = BaseMapper.to_dict(project)
+        data = BaseMapper.to_dict(environment)
         
         if data:
             # Convert timestamps to strings
@@ -28,10 +28,6 @@ class ProjectMapper(BaseMapper):
             # Handle organization reference
             if 'organisation' in data and data['organisation']:
                 data['organisation'] = str(data['organisation'])
-                
-            # Handle environment reference
-            if 'environment' in data and data['environment']:
-                data['environment'] = str(data['environment'])
                 
             # Handle organisational_unit reference
             if 'organisational_unit' in data and data['organisational_unit']:

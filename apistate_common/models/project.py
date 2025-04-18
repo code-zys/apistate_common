@@ -7,6 +7,7 @@ class Project(BaseOrganisationDocument):
     name = StringField()
     environment = ReferenceField('Environment')
     config_file_url = StringField()
+    organisational_unit = ReferenceField('OrganisationalUnit', required=False)
 
     meta = {
         'indexes': [
