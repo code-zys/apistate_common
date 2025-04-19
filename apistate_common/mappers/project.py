@@ -36,5 +36,11 @@ class ProjectMapper(BaseMapper):
             # Handle organisational_unit reference
             if 'organisational_unit' in data and data['organisational_unit']:
                 data['organisational_unit'] = str(data['organisational_unit'])
-                
+            
+            if 'created_by' in data and data['created_by']:
+                data['created_by'] = {
+                    'id': str(project.created_by.id),
+                    'email': project.created_by.email,
+                    'fullname': f"{project.created_by.first_name} {project.created_by.last_name}"
+                }
         return data
