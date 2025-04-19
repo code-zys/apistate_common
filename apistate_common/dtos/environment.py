@@ -5,6 +5,7 @@ from datetime import datetime
 class EnvironmentBase(BaseModel):
     """Base DTO for Environment data."""
     name: str
+    organisational_unit: Optional[str] = None
 
 class EnvironmentCreate(EnvironmentBase):
     """DTO for creating a new Environment."""
