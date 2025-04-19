@@ -6,7 +6,7 @@ class Project(BaseOrganisationDocument):
     """
     name = StringField()
     description = StringField()
-    environment = ReferenceField('Environment')
+    environment = ReferenceField('Environment', required=True)
     config_file_url = StringField()
     organisational_unit = ReferenceField('OrganisationalUnit', required=False)
 
