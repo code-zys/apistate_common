@@ -32,5 +32,11 @@ class EnvironmentMapper(BaseMapper):
             # Handle organisational_unit reference
             if 'organisational_unit' in data and data['organisational_unit']:
                 data['organisational_unit'] = str(data['organisational_unit'])
-                
+            
+            if 'created_by' in data and data['created_by']:
+                data['created_by'] = {
+                    'id': str(environment.created_by.id),
+                    'email': environment.created_by.email,
+                    'fullname': f"{environment.created_by.lastname} {environment.created_by.firstname}"
+                }
         return data
