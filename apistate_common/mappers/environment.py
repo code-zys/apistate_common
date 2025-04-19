@@ -37,6 +37,6 @@ class EnvironmentMapper(BaseMapper):
                 data['created_by'] = {
                     'id': str(environment.created_by.id),
                     'email': environment.created_by.email,
-                    'fullname': f"{environment.created_by.lastname} {environment.created_by.firstname}"
+                    'fullname': f"{environment.created_by.first_name} {environment.created_by.last_name}"
                 }
         return data
