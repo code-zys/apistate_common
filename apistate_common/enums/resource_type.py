@@ -10,8 +10,10 @@ class OrganisationResourceType(Enum):
     CONNECTIONS = "CONNECTIONS"
     PROJECTS = "PROJECTS"
     APIS = "APIS"
+    ENVIRONMENT = "ENVIRONMENT"
 
 class OrganisationalUnitResourceType(Enum):
+    ALL = "ALL"
     ORGANISATION = "ORGANISATION"
     DETAILS = "DETAILS"
     HABILITATION = "HABILITATION"
@@ -19,3 +21,4 @@ class OrganisationalUnitResourceType(Enum):
     CONNECTIONS = "CONNECTIONS"
     PROJECTS = "PROJECTS"
     APIS = "APIS"
+    ENVIRONMENT = "ENVIRONMENT"
