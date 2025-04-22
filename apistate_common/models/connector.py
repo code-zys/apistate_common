@@ -11,5 +11,6 @@ class Connector(BaseOrganisationDocument):
         'indexes': [
             {'fields': ['name', 'organisation'], 'unique': True},
             {'fields': ['code', 'organisation'], 'unique': True}
-        ]
+        ],
+        'collection': 'connectors'
     }
