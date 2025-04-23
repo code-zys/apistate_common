@@ -7,6 +7,7 @@ class Connection(BaseOrganisationDocument):
     connector = ReferenceField('Connector')
     name = StringField()
     organisation_unit = ReferenceField('OrganisationUnit')
+    credential_options = DictField(required=True)
 
     meta = {
         'indexes': [
