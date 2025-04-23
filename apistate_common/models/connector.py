@@ -4,8 +4,11 @@ from .base import BaseOrganisationDocument
 class Connector(BaseOrganisationDocument):
     """Connector model representing a connection configuration.
     """
-    name = StringField()
-    code = StringField()
+    name = StringField(required=True)
+    code = StringField(required=True)
+    logo = StringField()
+    health_check_endpoint = StringField()
+    credential_options = ListField(DictField(), default=list)
 
     meta = {
         'indexes': [
