@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField
+from mongoengine import StringField, ReferenceField, DictField
 from .base import BaseOrganisationDocument
 
 class Connection(BaseOrganisationDocument):
