@@ -1,7 +1,7 @@
 from typing import Optional
 from apistate_common.models.connection import Connection
 from apistate_common.dtos.connection import ConnectionCreateDTO, ConnectionResponseDTO, ConnectionUpdateDTO
-from .base import BaseMapper
+from . import BaseMapper
 
 class ConnectionMapper(BaseMapper):
     @staticmethod
