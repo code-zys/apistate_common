@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField
+from mongoengine import StringField, ReferenceField, ListField, DictField
 from .base import BaseOrganisationDocument
 
 class Connector(BaseOrganisationDocument):
@@ -8,7 +8,7 @@ class Connector(BaseOrganisationDocument):
     code = StringField(required=True)
     logo = StringField()
     health_check_endpoint = StringField()
-    credential_options = ListField(DictField(), default=list)
+    credential_options = ListField(DictField(), default=[])
 
     meta = {
         'indexes': [
