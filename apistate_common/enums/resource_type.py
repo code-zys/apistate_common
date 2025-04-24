@@ -22,3 +22,4 @@ class OrganisationalUnitResourceType(Enum):
     PROJECTS = "PROJECTS"
     APIS = "APIS"
     ENVIRONMENT = "ENVIRONMENT"
+    ORGANISATIONAL_UNIT = "ORGANISATIONAL_UNIT"
