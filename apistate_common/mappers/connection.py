@@ -29,7 +29,7 @@ class ConnectionMapper(BaseMapper):
             description=dto.description,
             credential_options=dto.credential_options,
             organisational_unit=dto.organisational_unit_id,
-            status=dto.status,
+            status=dto.status.value,
             last_refresh_date=dto.last_refresh_date,
             expiration_date=dto.expiration_date
         )

@@ -12,7 +12,7 @@ class Connection(BaseOrganisationDocument):
     credential_options = DictField(required=True)
     last_refresh_date = IntField(default=0)
     expiration_date = IntField(default=0)
-    status = StringField(required=True, choices=ConnectionStatus, default=ConnectionStatus.NOT_TESTED)
+    status = StringField(required=True, choices=[status.value for status in ConnectionStatus], default=ConnectionStatus.NOT_TESTED.value)
 
     meta = {
         'indexes': [
