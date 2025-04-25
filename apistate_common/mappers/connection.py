@@ -12,7 +12,7 @@ class ConnectionMapper(BaseMapper):
             description=connection.description,
             connector_id=str(connection.connector.id),
             credential_options=connection.credential_options,
-            organisation_unit_id=str(connection.organisation_unit.id) if connection.organisation_unit else None,
+            organisational_unit_id=str(connection.organisational_unit.id) if connection.organisational_unit else None,
             created_at=connection.created_at,
             updated_at=connection.updated_at
         )

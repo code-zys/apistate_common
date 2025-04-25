@@ -9,7 +9,7 @@ class ConnectionBaseDTO(BaseDTO):
     connector_id: str
     description: Optional[str] = None
     credential_options: Dict
-    organisation_unit_id: Optional[str] = None
+    organisational_unit_id: Optional[str] = None
     last_refresh_date: Optional[int] = None
     expiration_date: Optional[int] = None
 
