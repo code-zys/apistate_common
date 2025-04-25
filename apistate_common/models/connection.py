@@ -5,7 +5,8 @@ class Connection(BaseOrganisationDocument):
     """Connection model representing an active connection instance.
     """
     connector = ReferenceField('Connector')
-    name = StringField()
+    name = StringField(required=True)
+    description = StringField()
     organisation_unit = ReferenceField('OrganisationUnit')
     credential_options = DictField(required=True)
 

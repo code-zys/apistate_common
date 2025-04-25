@@ -6,6 +6,7 @@ from .base import BaseDTO
 class ConnectionBaseDTO(BaseDTO):
     name: str
     connector_id: str
+    description: str
     credential_options: Dict
     organisation_unit_id: Optional[str] = None
 
