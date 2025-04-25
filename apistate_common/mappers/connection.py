@@ -24,7 +24,7 @@ class ConnectionMapper(BaseMapper):
             connector=dto.connector_id,
             description=dto.description,
             credential_options=dto.credential_options,
-            organisation_unit=dto.organisation_unit_id
+            organisational_unit=dto.organisation_unit_id
         )
 
     @staticmethod
