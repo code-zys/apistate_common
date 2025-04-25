@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField, DictField
+from mongoengine import StringField, ReferenceField, DictField, IntField
 from .base import BaseOrganisationDocument
 
 class Connection(BaseOrganisationDocument):
@@ -9,6 +9,8 @@ class Connection(BaseOrganisationDocument):
     description = StringField()
     organisation_unit = ReferenceField('OrganisationUnit')
     credential_options = DictField(required=True)
+    last_refresh_date = IntField(default=0)
+    expiration_date = IntField(default=0)
 
     meta = {
         'indexes': [
