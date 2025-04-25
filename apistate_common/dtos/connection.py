@@ -4,6 +4,7 @@ from datetime import datetime
 from .base import BaseDTO
 
 class ConnectionBaseDTO(BaseDTO):
+    id: Optional[str] = None
     name: str
     connector_id: str
     description: Optional[str] = None
