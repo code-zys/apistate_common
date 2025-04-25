@@ -20,6 +20,7 @@ class ConnectionMapper(BaseMapper):
     @staticmethod
     def to_model(dto: ConnectionCreateDTO) -> Connection:
         return Connection(
+            id=dto.id,
             name=dto.name,
             connector=dto.connector_id,
             description=dto.description,
