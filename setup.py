@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="apistate_common",
-    version="0.1.65",
+    version="0.1.66",
     packages=find_packages(),
     install_requires=[
         "fastapi>=0.68.0",
@@ -11,7 +11,7 @@ setup(
         "mongoengine>=0.24.0",
         "email-validator>=2.0.0",
         "passlib",
-        "bcrypt==4.0.1",
+        "bcrypt==4.0.1", 
         "python-jose[cryptography]>=3.3.0",
         "requests>=2.32.3"
     ],
