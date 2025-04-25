@@ -18,5 +18,5 @@ class ConnectionUpdateDTO(ConnectionBaseDTO):
 
 class ConnectionResponseDTO(ConnectionBaseDTO):
     id: str
-    created_at: datetime
-    updated_at: Optional[datetime]
+    created_at: int
+    updated_at: int

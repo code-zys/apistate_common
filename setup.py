@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="apistate_common",
-    version="0.1.61",
+    version="0.1.62",
     packages=find_packages(),
     install_requires=[
         "fastapi>=0.68.0",

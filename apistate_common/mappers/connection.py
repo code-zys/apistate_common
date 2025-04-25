@@ -9,6 +9,7 @@ class ConnectionMapper(BaseMapper):
         return ConnectionResponseDTO(
             id=str(connection.id),
             name=connection.name,
+            description=connection.description,
             connector_id=str(connection.connector.id),
             credential_options=connection.credential_options,
             organisation_unit_id=str(connection.organisation_unit.id) if connection.organisation_unit else None,
@@ -21,6 +22,7 @@ class ConnectionMapper(BaseMapper):
         return Connection(
             name=dto.name,
             connector=dto.connector_id,
+            description=dto.description,
             credential_options=dto.credential_options,
             organisation_unit=dto.organisation_unit_id
         )
@@ -29,6 +31,7 @@ class ConnectionMapper(BaseMapper):
     def update_model(connection: Connection, dto: ConnectionUpdateDTO) -> Connection:
         connection.name = dto.name
         connection.connector = dto.connector_id
+        connection.description = dto.description
         connection.credential_options = dto.credential_options
         connection.organisation_unit = dto.organisation_unit_id
         return connection
