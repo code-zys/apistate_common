@@ -14,7 +14,10 @@ class ConnectionMapper(BaseMapper):
             credential_options=connection.credential_options,
             organisational_unit_id=str(connection.organisational_unit.id) if connection.organisational_unit else None,
             created_at=connection.created_at,
-            updated_at=connection.updated_at
+            updated_at=connection.updated_at,
+            status=connection.status,
+            last_refresh_date=connection.last_refresh_date,
+            expiration_date=connection.expiration_date
         )
 
     @staticmethod
@@ -25,7 +28,10 @@ class ConnectionMapper(BaseMapper):
             connector=dto.connector_id,
             description=dto.description,
             credential_options=dto.credential_options,
-            organisational_unit=dto.organisational_unit_id
+            organisational_unit=dto.organisational_unit_id,
+            status=dto.status,
+            last_refresh_date=dto.last_refresh_date,
+            expiration_date=dto.expiration_date
         )
 
     @staticmethod
@@ -34,5 +40,8 @@ class ConnectionMapper(BaseMapper):
         connection.connector = dto.connector_id
         connection.description = dto.description
         connection.credential_options = dto.credential_options
-        connection.organisation_unit = dto.organisation_unit_id
+        connection.organisational_unit = dto.organisational_unit_id
+        connection.status = dto.status
+        connection.last_refresh_date = dto.last_refresh_date
+        connection.expiration_date = dto.expiration_date
         return connection

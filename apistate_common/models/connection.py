@@ -1,5 +1,6 @@
 from mongoengine import StringField, ReferenceField, DictField, IntField
 from .base import BaseOrganisationDocument
+from ..enums.connection_status import ConnectionStatus
 
 class Connection(BaseOrganisationDocument):
     """Connection model representing an active connection instance.
@@ -11,6 +12,7 @@ class Connection(BaseOrganisationDocument):
     credential_options = DictField(required=True)
     last_refresh_date = IntField(default=0)
     expiration_date = IntField(default=0)
+    status = StringField(required=True, choices=ConnectionStatus, default=ConnectionStatus.NOT_TESTED)
 
     meta = {
         'indexes': [

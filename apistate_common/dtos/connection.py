@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Dict, Optional
 from datetime import datetime
 from .base import BaseDTO
+from ..enums.connection_status import ConnectionStatus
 
 class ConnectionBaseDTO(BaseDTO):
     id: Optional[str] = None
@@ -12,6 +13,7 @@ class ConnectionBaseDTO(BaseDTO):
     organisational_unit_id: Optional[str] = None
     last_refresh_date: Optional[int] = None
     expiration_date: Optional[int] = None
+    status: ConnectionStatus = ConnectionStatus.NOT_TESTED
 
 class ConnectionCreateDTO(ConnectionBaseDTO):
     pass
