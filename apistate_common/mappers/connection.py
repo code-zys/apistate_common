@@ -3,6 +3,7 @@ from apistate_common.models.connection import Connection
 from apistate_common.dtos.connection import ConnectionCreateDTO, ConnectionResponseDTO, ConnectionUpdateDTO
 from . import BaseMapper
 import json
+from bson import ObjectId
 
 class ConnectionMapper(BaseMapper):
     @staticmethod
