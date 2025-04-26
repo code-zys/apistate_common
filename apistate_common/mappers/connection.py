@@ -15,7 +15,7 @@ class ConnectionMapper(BaseMapper):
             description=connection.description,
             connector_id=str(connection.connector.id),
             credential_options=credential_options,
-            organisational_unit_id=str(connection.organisational_unit.id) if connection.organisational_unit else None,
+            organisational_unit_id=str(connection.organisational_unit) if isinstance(connection.organisational_unit, (str, ObjectId)) else str(connection.organisational_unit.id) if connection.organisational_unit else None,
             created_at=connection.created_at,
             updated_at=connection.updated_at,
             status=connection.status,
