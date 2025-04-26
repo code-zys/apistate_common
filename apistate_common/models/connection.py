@@ -9,7 +9,7 @@ class Connection(BaseOrganisationDocument):
     name = StringField(required=True)
     description = StringField()
     organisational_unit = ReferenceField('OrganisationalUnit')
-    credential_options = DictField(required=True)
+    credential_options = StringField(required=True)
     last_refresh_date = IntField(default=0)
     expiration_date = IntField(default=0)
     status = StringField(required=True, choices=[status.value for status in ConnectionStatus], default=ConnectionStatus.NOT_TESTED.value)
