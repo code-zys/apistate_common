@@ -8,6 +8,7 @@ class ProjectCreate(BaseModel):
     description: str | None = None
     environment: str | None = None
     config_file_url: str | None = None
+    config_file: str | None = None  # API configuration JSON
     organisational_unit: str | None = None
 
 class ProjectUpdate(BaseModel):
@@ -16,6 +17,7 @@ class ProjectUpdate(BaseModel):
     description: str | None = None
     environment: str | None = None
     config_file_url: str | None = None
+    config_file: str | None = None  # API configuration JSON
 
 class ProjectResponse(BaseModel):
     """DTO for project response."""
@@ -25,6 +27,7 @@ class ProjectResponse(BaseModel):
     organisation: str
     environment: str | None = None
     config_file_url: str | None = None
+    config_file: Dict | None = None  # API configuration as dictionary
     organisational_unit: str | None = None
     created_at: datetime
     updated_at: datetime

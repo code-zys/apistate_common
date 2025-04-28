@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField
+from mongoengine import StringField, ReferenceField, DictField
 from .base import BaseOrganisationDocument
 
 class Project(BaseOrganisationDocument):
@@ -8,6 +8,7 @@ class Project(BaseOrganisationDocument):
     description = StringField()
     environment = ReferenceField('Environment', required=True)
     config_file_url = StringField()
+    config_file = DictField()  # Stores the API configuration as a dictionary
     organisational_unit = ReferenceField('OrganisationalUnit', required=False)
 
     meta = {
