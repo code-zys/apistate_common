@@ -7,7 +7,6 @@ class ProjectCreate(BaseModel):
     name: str
     description: str | None = None
     environment: str | None = None
-    config_file_url: str | None = None
     config_file: str | None = None  # API configuration JSON
     organisational_unit: str | None = None
 
@@ -16,7 +15,6 @@ class ProjectUpdate(BaseModel):
     name: str | None = None
     description: str | None = None
     environment: str | None = None
-    config_file_url: str | None = None
     config_file: str | None = None  # API configuration JSON
 
 class ProjectResponse(BaseModel):
@@ -26,7 +24,6 @@ class ProjectResponse(BaseModel):
     description: str | None = None
     organisation: str
     environment: str | None = None
-    config_file_url: str | None = None
     config_file: Dict | None = None  # API configuration as dictionary
     organisational_unit: str | None = None
     created_at: datetime
