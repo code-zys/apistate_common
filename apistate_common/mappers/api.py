@@ -4,7 +4,7 @@ from . import BaseMapper
 
 class APIMapper(BaseMapper):
     """Mapper for API model and DTOs."""
-    @classmethod
+    @staticmethod
     def to_dict(model: API) -> APIResponseDto:
         """Convert API model to DTO.
         
