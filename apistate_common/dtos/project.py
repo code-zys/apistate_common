@@ -1,6 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel
 from typing import Optional, Dict
+from fastapi import Form, File, UploadFile
 
 class ProjectCreate(BaseModel):
     """DTO for creating a new project."""
