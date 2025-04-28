@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Dict
 
 class ProjectCreate(BaseModel):
     """DTO for creating a new project."""
