@@ -7,7 +7,6 @@ class Project(BaseOrganisationDocument):
     name = StringField()
     description = StringField()
     environment = ReferenceField('Environment', required=True)
-    config_file_url = StringField()
     config_file = DictField()  # Stores the API configuration as a dictionary
     organisational_unit = ReferenceField('OrganisationalUnit', required=False)
 
