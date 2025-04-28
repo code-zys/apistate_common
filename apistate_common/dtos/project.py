@@ -10,6 +10,17 @@ class ProjectCreate(BaseModel):
     config_file: str | None = None  # API configuration JSON
     organisational_unit: str | None = None
 
+    @classmethod
+    def as_form(
+        cls,
+        name: str = Form(...),
+        description: Optional[str] = Form(None),
+        config_file: UploadFile = File(...),
+        environment= Form(...),
+        organisational_unit: Optional[str] = Form(None)
+    ):
+        return cls(name=name, description=description, config_file=config_file, environment=environment, organisational_unit=organisational_unit)
+
 class ProjectUpdate(BaseModel):
     """DTO for updating an existing project."""
     name: str | None = None
