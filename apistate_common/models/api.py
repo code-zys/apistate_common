@@ -1,6 +1,6 @@
 from mongoengine import StringField, ReferenceField
 from .base import BaseOrganisationDocument
-from ..enums.apistatus import APIStatus
+from ..enums.api_status import APIStatus
 class API(BaseOrganisationDocument):
     """API model representing an API within a project.
     """
