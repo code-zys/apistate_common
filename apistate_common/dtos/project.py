@@ -8,7 +8,7 @@ class ProjectCreate(BaseModel):
     name: str
     description: str | None = None
     environment: str | None = None
-    config_file: str | None = None  # API configuration JSON
+    config_file: UploadFile  # API configuration JSON
     organisational_unit: str | None = None
 
     @classmethod
@@ -27,7 +27,7 @@ class ProjectUpdate(BaseModel):
     name: str | None = None
     description: str | None = None
     environment: str | None = None
-    config_file: str | None = None  # API configuration JSON
+    config_file: UploadFile  # API configuration JSON
 
 class ProjectResponse(BaseModel):
     """DTO for project response."""
