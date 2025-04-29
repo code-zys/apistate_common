@@ -1,11 +1,15 @@
 from mongoengine import StringField, ReferenceField
 from .base import BaseOrganisationDocument
+from ..enums.apistatus import APIStatus
 class API(BaseOrganisationDocument):
     """API model representing an API within a project.
     """
     name = StringField()
     version = StringField()
     project = ReferenceField('Project')
+    connection = ReferenceField('Connection', required=True)
+    connector = ReferenceField('Connector', required=True)
+    status = StringField(required=True, choices=[api_status.value for api_status in APIStatus], default=APIStatus.NOT_SYNCHRONIZED.value)
 
     meta = {
         'indexes': [
