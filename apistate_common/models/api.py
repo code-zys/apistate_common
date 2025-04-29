@@ -10,5 +10,6 @@ class API(BaseOrganisationDocument):
     meta = {
         'indexes': [
             {'fields': ['name', 'organisation'], 'unique': True}
-        ]
+        ],
+        'collection': 'apis'
     }
