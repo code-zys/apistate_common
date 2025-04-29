@@ -21,15 +21,15 @@ class APIMapper(BaseMapper):
         data = BaseMapper.to_dict(model)
 
         if model.project:
-            data['project'] = str(model.project.id)
+            data['project_id'] = str(model.project.id)
         
         if model.organisation:
-            data['organisation'] = str(model.organisation.id)
+            data['organisation_id'] = str(model.organisation.id)
         
         if model.connection:
-            data['connection'] = str(model.connection.id)
+            data['connection_id'] = str(model.connection.id)
 
         if model.connector:
-            data['connector'] = str(model.connector.id)
+            data['connector_id'] = str(model.connector.id)
 
         return APIResponseDto(**data)
