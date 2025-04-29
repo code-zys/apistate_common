@@ -19,4 +19,10 @@ class APIMapper(BaseMapper):
             
         data = BaseMapper.to_dict(model)
 
+        if model.project:
+            data['project'] = str(model.project.id)
+        
+        if model.organisation:
+            data['organisation'] = str(model.organisation.id)
+
         return APIResponseDto(**data)
