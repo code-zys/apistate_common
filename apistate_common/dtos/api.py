@@ -10,7 +10,6 @@ class APIBaseDto(BaseDTO):
     project_id: str = Field(..., description="Project ID")
     connection_id: str = Field(..., description="Connection ID")
     connector_id: str = Field(..., description="Connector ID")
-    status: str = Field(..., description="API status")
 
 class APICreateDto(APIBaseDto):
     """DTO for creating a new API."""
@@ -30,3 +29,4 @@ class APIResponseDto(APIBaseDto):
     """DTO for API responses."""
     id: str = Field(..., description="API ID")
     organisation_id: str = Field(..., description="Organisation ID")
+    status: str = Field(..., description="API status")
