@@ -21,9 +21,9 @@ class APIUpdateDto(BaseModel):
     name: Optional[str] = Field(None, description="API name")
     description: Optional[str] = Field(None, description="API description")
     version: Optional[str] = Field(None, description="API version")
-    project_id: Optional[str] = Field(None, description="Project ID")
-    connection_id: Optional[str] = Field(None, description="Connection ID")
-    connector_id: Optional[str] = Field(None, description="Connector ID")
+    # project_id: Optional[str] = Field(None, description="Project ID")
+    # connection_id: Optional[str] = Field(None, description="Connection ID")
+    # connector_id: Optional[str] = Field(None, description="Connector ID")
     status: Optional[str] = Field(None, description="API status")
 
 class APIResponseDto(APIBaseDto):
