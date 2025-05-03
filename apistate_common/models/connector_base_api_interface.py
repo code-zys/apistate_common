@@ -51,12 +51,12 @@ class ConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
         pass
 
     @abstractmethod
-    async def get_api_info(self, request: ApiRequest) -> ApiInfo:
+    async def get_api_info(self, request: ApiRequest[CredentialsType]) -> ApiInfo:
         """Retrieve information about a specific API"""
         pass
 
     @abstractmethod
-    async def list_endpoints(self) -> List[Endpoint]:
+    async def list_endpoints(self, request: ApiRequest[CredentialsType]) -> List[Endpoint]:
         """List available endpoints for the API"""
         pass
 

@@ -10,9 +10,9 @@ class ConnectorCredentials(BaseModel, Generic[T]):
     """Generic credentials model for API connectors."""
     credentials: T  # Now accepts a generic type instead of Dict[str, Any]
 
-class ApiRequest(BaseModel):
+class ApiRequest(BaseModel, Generic[T]):
     """Generic request model for API operations."""
-    credentials: Dict[str, Any]  # Flexible credentials structure
+    credentials: T
     api_id: str
 
 # Output DTOs
