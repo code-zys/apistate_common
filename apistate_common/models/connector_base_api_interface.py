@@ -35,7 +35,7 @@ class ConnectorBaseAPIInterface(ABC):
         pass
 
     @abstractmethod
-    async def get_api_info(self, request: dict) -> list[dict]:
+    async def get_api_info(self, request: dict) -> dict:
         """Retrieve information about a specific API"""
         pass
 
