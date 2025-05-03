@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, TypeVar, Generic
 from fastapi import FastAPI
 from ..dtos.connector import (
     HealthCheckResponse,
@@ -11,7 +11,9 @@ from ..dtos.connector import (
 )
 from ..utils.connector_api_type_checker import ConnectorAPITypeChecker
 
-class ConnectorBaseAPIInterface(ABC):
+CredentialsType = TypeVar('CredentialsType')
+
+class ConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
     def __init__(self, app: FastAPI = None):
         """Initialize the connector with an optional FastAPI instance.
         
@@ -44,7 +46,7 @@ class ConnectorBaseAPIInterface(ABC):
         pass
 
     @abstractmethod
-    async def check_credentials(self, credentials: ConnectorCredentials) -> CredentialsCheckResponse:
+    async def check_credentials(self, credentials: ConnectorCredentials[CredentialsType]) -> CredentialsCheckResponse:
         """Validate API credentials"""
         pass
 
