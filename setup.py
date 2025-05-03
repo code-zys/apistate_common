@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="apistate_common",
-    version="0.1.88",
+    version="0.1.89",
     packages=find_packages(),
     install_requires=[
         "fastapi>=0.68.0",
@@ -13,7 +13,9 @@ setup(
         "passlib",
         "bcrypt==4.0.1", 
         "python-jose[cryptography]>=3.3.0",
-        "requests>=2.32.3"
+        "requests>=2.32.3",
+        "uvicorn>=0.15.0",
+        "typing-extensions>=4.5.0"
     ],
     description="Common models and utilities for API State microservices",
     author="Codezys",

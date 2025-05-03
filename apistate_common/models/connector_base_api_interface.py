@@ -9,6 +9,7 @@ from ..dtos.connector import (
     ApiInfo,
     Endpoint
 )
+from ..utils.connector_api_type_checker import ConnectorAPITypeChecker
 
 class ConnectorBaseAPIInterface(ABC):
     def __init__(self, app: FastAPI = None):
@@ -31,7 +32,7 @@ class ConnectorBaseAPIInterface(ABC):
         for path, method_name, methods in routes:
             self.app.add_api_route(
                 path,
-                wrap_method(ConnectorBaseAPIInterface, self, method_name),
+                ConnectorAPITypeChecker.wrap_method(ConnectorBaseAPIInterface, self, method_name),
                 methods=methods
             )
 
