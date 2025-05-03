@@ -1,10 +1,23 @@
 from abc import ABC, abstractmethod
 from typing import List
-
+from fastapi import FastAPI
+from ..dtos.connector import (
+    HealthCheckResponse,
+    ConnectorCredentials,
+    ApiRequest,
+    CredentialsCheckResponse,
+    ApiInfo,
+    Endpoint
+)
 
 class ConnectorBaseAPIInterface(ABC):
-    def __init__(self):
-        self.app = FastAPI()
+    def __init__(self, app: FastAPI = None):
+        """Initialize the connector with an optional FastAPI instance.
+        
+        Args:
+            app: FastAPI instance to register routes on. If None, creates a new instance.
+        """
+        self.app = app if app is not None else FastAPI()
         self._register_routes()
 
     def _register_routes(self):
@@ -25,21 +38,25 @@ class ConnectorBaseAPIInterface(ABC):
     # -------------------- Abstract Methods --------------------
 
     @abstractmethod
-    async def health_check(self) -> dict:
+    async def health_check(self) -> HealthCheckResponse:
         """Simple health check endpoint"""
         pass
 
     @abstractmethod
-    async def check_credentials(self, credentials: dict) -> dict:
+    async def check_credentials(self, credentials: ConnectorCredentials) -> CredentialsCheckResponse:
         """Validate API credentials"""
         pass
 
     @abstractmethod
-    async def get_api_info(self, request: dict) -> dict:
+    async def get_api_info(self, request: ApiRequest) -> ApiInfo:
         """Retrieve information about a specific API"""
         pass
 
     @abstractmethod
-    async def list_endpoints(self) -> list[dict]:
+    async def list_endpoints(self) -> List[Endpoint]:
         """List available endpoints for the API"""
         pass
+
+    def get_app(self) -> FastAPI:
+        """Get the FastAPI application instance"""
+        return self.app
