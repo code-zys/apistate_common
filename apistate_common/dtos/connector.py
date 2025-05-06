@@ -25,8 +25,8 @@ class CredentialsCheckResponse(BaseModel):
     status: str
     message: Optional[str] = None
 
-class Environment(BaseModel):
-    """Environment information model (replaces Stage for platform agnosticism)."""
+class Version(BaseModel):
+    """Version information model (replaces Stage for platform agnosticism)."""
     name: str
     version_id: Optional[str] = None  # Replaces deployment_id for more generic versioning
     description: Optional[str] = None
@@ -40,7 +40,7 @@ class ApiInfo(BaseModel):
     id: str
     description: Optional[str] = None
     created_date: datetime
-    environments: List[Environment]  # Replaces stages with more generic environments
+    versions: List[Version]  # Replaces stages with more generic environments
     metadata: Optional[Dict[str, Any]] = None  # Platform-specific additional information
 
 class Endpoint(BaseModel):
