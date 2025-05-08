@@ -7,7 +7,7 @@ class Connector(BaseOrganisationDocument):
     name = StringField(required=True)
     code = StringField(required=True)
     logo = StringField()
-    health_check_endpoint = StringField()
+    host_url = StringField()
     credential_options = ListField(DictField(), default=[])
 
     meta = {
