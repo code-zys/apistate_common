@@ -51,6 +51,7 @@ class Endpoint(BaseModel):
     resource_id: str
     query_params: Optional[dict] = None
     path_params: Optional[dict] = None
+    body_type: Optional[dict] = None
     metadata: Optional[Dict[str, Any]] = None
 
 class Environment(BaseModel):
