@@ -42,7 +42,7 @@ class ConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
     # -------------------- Abstract Methods --------------------
 
     @abstractmethod
-    async def health_check(self) -> OrchestrationResult[HealthCheckResponse]:
+    async def health_check(self) -> HealthCheckResponse:
         """Simple health check endpoint"""
         pass
 
