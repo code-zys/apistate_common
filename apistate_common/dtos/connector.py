@@ -49,7 +49,9 @@ class Endpoint(BaseModel):
     method: str
     api_id: str
     resource_id: str
-    metadata: Optional[Dict[str, Any]] = None  # Platform-specific additional information
+    query_params: Optional[dict] = None
+    path_params: Optional[dict] = None
+    metadata: Optional[Dict[str, Any]] = None
 
 class Environment(BaseModel):
     """Environment information model."""
