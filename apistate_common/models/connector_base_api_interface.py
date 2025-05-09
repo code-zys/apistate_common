@@ -10,6 +10,7 @@ from ..dtos.connector import (
     Endpoint
 )
 from ..utils.connector_api_type_checker import ConnectorAPITypeChecker
+from ..dtos.orchestration_result import OrchestrationResult
 
 CredentialsType = TypeVar('CredentialsType')
 
@@ -41,7 +42,7 @@ class ConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
     # -------------------- Abstract Methods --------------------
 
     @abstractmethod
-    async def health_check(self) -> HealthCheckResponse:
+    async def health_check(self) -> OrchestrationResult[HealthCheckResponse]:
         """Simple health check endpoint"""
         pass
 
