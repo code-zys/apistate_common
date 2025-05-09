@@ -50,3 +50,12 @@ class Endpoint(BaseModel):
     api_id: str
     resource_id: str
     metadata: Optional[Dict[str, Any]] = None  # Platform-specific additional information
+
+class Environment(BaseModel):
+    """Environment information model."""
+    name: str
+    version_id: Optional[str] = None
+    description: Optional[str] = None
+    last_updated_date: Optional[datetime] = None
+    url: str
+    metadata: Optional[Dict[str, Any]] = None

@@ -1,11 +1,12 @@
 from .base import BaseOrganisationDocument
 from mongoengine import StringField, ReferenceField
+from enums.endpoint_method_type import EndpointMethodType
 
 class Endpoint(BaseOrganisationDocument):
     """Endpoint model representing an API endpoint.
     """
     url = StringField()
-    method = StringField()
+    method = StringField(choices=EndpointMethodType.values())
     environment = ReferenceField('Environment')
     api = ReferenceField('API')
 
