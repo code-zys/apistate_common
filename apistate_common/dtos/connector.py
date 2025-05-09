@@ -53,6 +53,7 @@ class Endpoint(BaseModel):
     path_params: Optional[dict] = None
     body_type: Optional[dict] = None
     metadata: Optional[Dict[str, Any]] = None
+    description: Optional[str] = None
 
 class Environment(BaseModel):
     """Environment information model."""
