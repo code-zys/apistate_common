@@ -1,6 +1,6 @@
 from mongoengine import StringField, ReferenceField, ListField, DictField
 from .base import BaseOrganisationDocument
-from enums.connector_status import ConnectorStatus
+from ..enums.connector_status import ConnectorStatus
 
 class Connector(BaseOrganisationDocument):
     """Connector model representing a connection configuration.
