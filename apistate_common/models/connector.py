@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField, ListField, DictField
+from mongoengine import StringField, ReferenceField, ListField, DictField, IntField
 from .base import BaseOrganisationDocument
 from ..enums.connector_status import ConnectorStatus
 
