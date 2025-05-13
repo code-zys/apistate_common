@@ -6,7 +6,7 @@ class Endpoint(BaseOrganisationDocument):
     """Endpoint model representing an API endpoint.
     """
     url = StringField()
-    method = StringField(choices=EndpointMethodType.values())
+    method = StringField(choices=[e.value for e in EndpointMethodType])
     environment = ReferenceField('Environment')
     api = ReferenceField('API')
 
