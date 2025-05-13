@@ -9,7 +9,7 @@ class Connector(BaseOrganisationDocument):
     code = StringField(required=True)
     logo = StringField()
     host_url = StringField()
-    status = StringField(choices=[c.value for c in ConnectorStatus], default=ConnectorStatus.NOT_AVAILABLE)
+    status = StringField(choices=[c.value for c in ConnectorStatus], default=ConnectorStatus.NOT_AVAILABLE.value)
     date_status = IntField(required=True, default=0)
     credential_options = ListField(DictField(), default=[])
 
