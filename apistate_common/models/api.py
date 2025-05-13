@@ -5,6 +5,7 @@ class API(BaseOrganisationDocument):
     """API model representing an API within a project.
     """
     name = StringField()
+    url = StringField()
     description = StringField()
     version = StringField()
     project = ReferenceField('Project')

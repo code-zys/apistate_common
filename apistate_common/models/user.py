@@ -13,7 +13,7 @@ class User(BaseDocument):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
     is_active = BooleanField(default=True, required=True)
-    type = EnumField(UserType, default=UserType.USER, required=True) #TODO: helps to chefk if user can manage users or not
+    type = EnumField(UserType, default=UserType.USER, required=True)
     change_password_on_first_connection = BooleanField(default=True)
     last_connection_at = IntField(null=True)
 
