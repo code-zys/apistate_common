@@ -55,7 +55,7 @@ class Endpoint(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
     description: Optional[str] = None
 
-class Environment(BaseModel):
+class Version(BaseModel):
     """Environment information model."""
     name: str
     version_id: Optional[str] = None

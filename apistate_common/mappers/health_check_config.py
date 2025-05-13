@@ -1,5 +1,5 @@
 from apistate_common.models.health_config import HealthCheckConfig
-from app.dtos.health_config import HealthCheckConfigResponseDto, RequestBodyCheckDto
+from apistate_common.dtos.health_config import HealthCheckConfigResponseDto, RequestBodyCheckDto
 from bson import ObjectId
 
 class HealthCheckConfigMapper:

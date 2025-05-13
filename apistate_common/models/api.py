@@ -7,7 +7,7 @@ class API(BaseOrganisationDocument):
     name = StringField()
     url = StringField()
     description = StringField()
-    version = StringField()
+    version = StringField() #TODO: take version into account when retrieving the API
     project = ReferenceField('Project')
     connection = ReferenceField('Connection', required=True)
     connector = ReferenceField('Connector', required=True)
