@@ -1,6 +1,7 @@
 from typing import List, Optional, Dict, Any, TypeVar, Generic
 from pydantic import BaseModel
 from datetime import datetime
+from ..enums.connector_credentials_type import ConnectorCredentialsType
 
 # Define a TypeVar for credentials
 T = TypeVar('T')
@@ -8,7 +9,8 @@ T = TypeVar('T')
 # Input DTOs
 class ConnectorCredentials(BaseModel, Generic[T]):
     """Generic credentials model for API connectors."""
-    credentials: T  # Now accepts a generic type instead of Dict[str, Any]
+    credentials: T 
+    type: ConnectorCredentialsType
 
 class ApiRequest(BaseModel, Generic[T]):
     """Generic request model for API operations."""
