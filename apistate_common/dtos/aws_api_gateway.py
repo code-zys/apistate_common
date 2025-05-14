@@ -4,8 +4,6 @@ class AWSAPIGatewayCredentials(BaseModel):
     """AWS API Gateway specific credentials model."""
     access_key_id: str
     secret_access_key: str
-    region: str
 class AWSAPIGatewayRoleArnCredentials(BaseModel):
     """AWS API Gateway specific credentials model using role ARN."""
     role_arn: str
-    region: str
