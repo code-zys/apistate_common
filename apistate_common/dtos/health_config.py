@@ -10,11 +10,11 @@ class RequestBodyCheckDto(BaseModel):
 
 class HealthCheckConfigCreateDto(BaseModel):
     """DTO for creating a health check configuration"""
-    endpoint_id: Optional[str] = None
+    endpoint: Optional[str] = None
     cron: str
     status_code: int
     body_checks: List[RequestBodyCheckDto] = []
-    api_id: str
+    api: str
 
 class HealthCheckConfigUpdateDto(BaseModel):
     """DTO for updating a health check configuration"""
