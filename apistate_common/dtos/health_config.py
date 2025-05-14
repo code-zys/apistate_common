@@ -31,4 +31,4 @@ class HealthCheckConfigResponseDto(BaseModel):
     status_code: int
     body_checks: List[RequestBodyCheckDto]
     api_id: str    
-    created_at: str
+    created_at: int
