@@ -14,6 +14,8 @@ class ApiRequest(BaseModel, Generic[T]):
     """Generic request model for API operations."""
     credentials: T
     api_id: str
+    version: str
+    region: str
 
 # Output DTOs
 class HealthCheckResponse(BaseModel):
@@ -40,7 +42,7 @@ class ApiInfo(BaseModel):
     id: str
     description: Optional[str] = None
     created_date: datetime
-    versions: List[Version]  # Replaces stages with more generic environments
+    version: Version
     metadata: Optional[Dict[str, Any]] = None  # Platform-specific additional information
 
 class Endpoint(BaseModel):
