@@ -30,4 +30,5 @@ class HealthCheckConfigResponseDto(BaseModel):
     cron: str
     status_code: int
     body_checks: List[RequestBodyCheckDto]
-    api_id: str
+    api_id: str    
+    created_at: str

@@ -17,5 +17,6 @@ class HealthCheckConfigMapper:
                     operator=check.operator
                 ) for check in config.body_checks
             ],
-            api_id=str(config.api.id)
+            api_id=str(config.api.id),
+            created_at=config.created_at
         )
