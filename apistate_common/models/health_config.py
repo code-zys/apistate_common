@@ -10,6 +10,8 @@ class HealthCheckConfig(BaseOrganisationDocument):
     status_code = IntField()
     body_checks = ListField(EmbeddedDocumentField(RequestBodyCheck))
     api = ReferenceField('API')
+    query_params_data = DictField()
+    path_params_data = DictField()
 
     meta = {
         'indexes': [
