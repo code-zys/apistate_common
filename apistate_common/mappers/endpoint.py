@@ -10,9 +10,14 @@ class EndpointMapper:
             "method": endpoint.method,
             "api_id": str(endpoint.api.id) if endpoint.api else None,
             "resource_id": endpoint.resource_id,
-            "created_at": endpoint.created_at.isoformat() if endpoint.created_at else None,
-            "updated_at": endpoint.updated_at.isoformat() if endpoint.updated_at else None,
-            "deleted": endpoint.deleted
+            "query_params": endpoint.query_params,
+            "path_params": endpoint.path_params,
+            "body_type": endpoint.body_type,
+            "metadata": endpoint.metadata,
+            "description": endpoint.description,
+            "environment_id": str(endpoint.environment.id) if endpoint.environment else None,
+            "created_at": endpoint.created_at if endpoint.created_at else None,
+            "updated_at": endpoint.updated_at if endpoint.updated_at else None,
         }
 
     @staticmethod
@@ -21,6 +26,10 @@ class EndpointMapper:
         return Endpoint(
             path=data.get("path"),
             method=data.get("method"),
-            api_id=data.get("api_id"),
-            resource_id=data.get("resource_id")
+            resource_id=data.get("resource_id"),
+            query_params=data.get("query_params", []),
+            path_params=data.get("path_params", []),
+            body_type=data.get("body_type", {}),
+            metadata=data.get("metadata", {}),
+            description=data.get("description")
         )
