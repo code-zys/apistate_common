@@ -5,14 +5,14 @@ from apistate_common.enums.endpoint_method_type import EndpointMethodType
 class Endpoint(BaseOrganisationDocument):
     """Endpoint model representing an API endpoint.
     """
-    path = StringField(required=True)  # Changed from url to path to match DTO
+    path = StringField(required=True)
     method = StringField(choices=[e.value for e in EndpointMethodType])
-    resource_id = StringField(required=True)  # Added to match DTO
-    query_params = ListField(StringField())  # Added to match DTO
-    path_params = ListField(StringField())  # Added to match DTO
-    body_type = DictField()  # Added to match DTO
-    metadata = DictField()  # Added to match DTO
-    description = StringField()  # Added to match DTO
+    resource_id = StringField(required=True)
+    query_params = ListField(StringField())
+    path_params = ListField(StringField())
+    body_type = DictField()
+    metadata = DictField()
+    description = StringField()
     environment = ReferenceField('Environment')
     api = ReferenceField('API')
 
