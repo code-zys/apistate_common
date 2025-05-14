@@ -4,6 +4,6 @@ from apistate_common.enums.request_body_check_operator import RequestBodyCheckOp
 class RequestBodyCheck(BaseEmbeddedDocument):
     """RequestBodyCheck model for configuring health check body validations.
     """
-    key = StringField(required=True)
+    path = StringField(required=True)
     value = StringField(required=True)
     operator = StringField(required=True, choices=[r.value for r in RequestBodyCheckOperator])

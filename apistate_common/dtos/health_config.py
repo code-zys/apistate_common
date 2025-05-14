@@ -1,10 +1,12 @@
 from typing import List, Optional
 from pydantic import BaseModel
+from ..enums.request_body_check_operator import RequestBodyCheckOperator
 
 class RequestBodyCheckDto(BaseModel):
     """DTO for request body check configuration"""
     path: str
-    expected_value: str
+    value: str
+    operator: RequestBodyCheckOperator
 
 class HealthCheckConfigCreateDto(BaseModel):
     """DTO for creating a health check configuration"""
