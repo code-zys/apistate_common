@@ -53,8 +53,8 @@ class Endpoint(BaseModel):
     method: str
     api_id: str
     resource_id: str
-    query_params: Optional[dict] = None
-    path_params: Optional[dict] = None
+    query_params: Optional[list[str]] = None
+    path_params: Optional[list[str]] = None
     body_type: Optional[dict] = None
     metadata: Optional[Dict[str, Any]] = None
     description: Optional[str] = None
