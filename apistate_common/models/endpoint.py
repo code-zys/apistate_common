@@ -18,6 +18,6 @@ class Endpoint(BaseOrganisationDocument):
 
     meta = {
         'indexes': [
-            {'fields': ['path', 'method', 'environment'], 'unique': True}  # Updated url to path in index
+            {'fields': ['organisation', 'api', 'path', 'method', 'environment'], 'unique': True}  # Updated url to path in index
         ]
     }
