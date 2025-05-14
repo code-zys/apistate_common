@@ -13,7 +13,8 @@ class HealthCheckConfigMapper:
             body_checks=[
                 RequestBodyCheckDto(
                     path=check.path,
-                    expected_value=check.expected_value
+                    value=check.value,
+                    operator=check.operator
                 ) for check in config.body_checks
             ],
             api_id=str(config.api.id)
