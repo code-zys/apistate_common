@@ -12,7 +12,7 @@ class API(BaseOrganisationDocument):
     connection = ReferenceField('Connection', required=True)
     connector = ReferenceField('Connector', required=True)
     external_id = StringField()
-    region = StringField
+    region = StringField()
     status = StringField(required=True, choices=[api_status.value for api_status in APIStatus], default=APIStatus.NOT_SYNCHRONIZED.value)
     error_message = StringField()
     
