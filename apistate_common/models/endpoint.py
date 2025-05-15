@@ -7,14 +7,13 @@ class Endpoint(BaseOrganisationDocument):
     """
     path = StringField(required=True)
     method = StringField(choices=[e.value for e in EndpointMethodType])
-    resource_id = StringField(required=True)
+    resource_id = StringField()
     query_params = ListField(StringField())
     path_params = ListField(StringField())
     body_type = DictField()
     metadata = DictField()
     description = StringField()
-    environment = ReferenceField('Environment')
-    api = ReferenceField('API')
+    api = ReferenceField('API', required=True)
 
     meta = {
         'indexes': [
