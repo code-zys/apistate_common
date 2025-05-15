@@ -1,4 +1,4 @@
-from mongoengine import IntField, StringField, ListField, ReferenceField, EmbeddedDocumentField
+from mongoengine import IntField, StringField, ListField, ReferenceField, EmbeddedDocumentField, DictField
 from .base import BaseOrganisationDocument
 from .request_body_check import RequestBodyCheck
 
