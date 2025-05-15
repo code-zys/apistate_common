@@ -15,7 +15,7 @@ class EndpointMapper:
             "body_type": endpoint.body_type,
             "metadata": endpoint.metadata,
             "description": endpoint.description,
-            "environment_id": str(endpoint.environment.id) if endpoint.environment else None,
+            # "environment_id": str(endpoint.environment.id) if endpoint.environment else None,
             "created_at": endpoint.created_at if endpoint.created_at else None,
             "updated_at": endpoint.updated_at if endpoint.updated_at else None,
         }
