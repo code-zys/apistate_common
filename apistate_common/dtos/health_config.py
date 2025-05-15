@@ -15,6 +15,8 @@ class HealthCheckConfigCreateDto(BaseModel):
     status_code: int
     body_checks: List[RequestBodyCheckDto] = []
     api: str
+    path_params_data: Optional[dict] = {}
+    query_params_data: Optional[dict] = {}
 
 class HealthCheckConfigUpdateDto(BaseModel):
     """DTO for updating a health check configuration"""
@@ -22,6 +24,8 @@ class HealthCheckConfigUpdateDto(BaseModel):
     cron: Optional[str] = None
     status_code: Optional[int] = None
     body_checks: Optional[List[RequestBodyCheckDto]] = None
+    path_params_data: Optional[dict] = None
+    query_params_data: Optional[dict] = None
 
 class HealthCheckConfigResponseDto(BaseModel):
     """DTO for health check configuration response"""
