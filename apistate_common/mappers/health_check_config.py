@@ -19,4 +19,6 @@ class HealthCheckConfigMapper:
             ],
             api_id=str(config.api.id),
             created_at=config.created_at,
+            path_params_data=config.path_params_data,
+            query_params_data=config.query_params_data
         )
