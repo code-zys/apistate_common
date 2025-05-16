@@ -10,6 +10,7 @@ class APIBaseDto(BaseDTO):
     project_id: str = Field(..., description="Project ID")
     connection_id: str = Field(..., description="Connection ID")
     connector_id: str = Field(..., description="Connector ID")
+    url: str = Field(..., description="API URL")
 
 class APICreateDto(APIBaseDto):
     """DTO for creating a new API."""
