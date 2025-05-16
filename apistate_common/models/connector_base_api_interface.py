@@ -28,7 +28,7 @@ class ConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
         routes = [
             ("/health", "health_check", ["GET"]),
             ("/credentials/check", "check_credentials", ["POST"]),
-            ("/info", "get_api_info", ["POST"]),
+            ("/info", "get_api_info", ["GET"]),
             ("/endpoints", "list_endpoints", ["GET"]),
         ]
 
