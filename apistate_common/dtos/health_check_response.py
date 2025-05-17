@@ -1,11 +1,14 @@
 from pydantic import BaseModel
 from typing import Dict, Any
+from datetime import datetime
 from apistate_common.enums.api_status import APIStatus
 
 class HealthCheckResponseDto(BaseModel):
-    timestamp: int
-    status_code: int
-    api_status: APIStatus
+    timestamp: datetime
+    req_status: int
     request: Dict[str, Any]
     response: Dict[str, Any]
-    config_id: str
+    api_status: APIStatus
+    api: str
+    config: str
+    request_duration: int
