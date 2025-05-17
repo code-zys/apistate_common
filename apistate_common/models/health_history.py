@@ -15,10 +15,7 @@ class HealthCheckHistory(BaseOrganisationDocument):
     request_duration = IntField(required=True)
     #TODO: start/pause health check
     meta = {
-        'collection': 'health_check_history',
-        'indexes': [
-            {'fields': ['config', 'timestamp'], 'unique': True}
-        ],
+        'collection': 'health_check_histories',
         'timeseries': {
             'timeField': 'timestamp',
             'metaField': 'config', #TODO: check if this is correct
