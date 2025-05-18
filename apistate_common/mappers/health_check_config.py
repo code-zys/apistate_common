@@ -8,7 +8,7 @@ class HealthCheckConfigMapper:
         endpoint = None
         if config.endpoint:
             if isinstance(config.endpoint, ObjectId):
-                endpoint = str(config.endpoint.id)
+                endpoint = str(config.endpoint)
             else:
                 endpoint = str(config.endpoint.id)
         return HealthCheckConfigResponseDto(
