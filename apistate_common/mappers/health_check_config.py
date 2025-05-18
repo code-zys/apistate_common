@@ -5,9 +5,15 @@ from bson import ObjectId
 class HealthCheckConfigMapper:
     @staticmethod
     def to_dto(config: HealthCheckConfig) -> HealthCheckConfigResponseDto:
+        endpoint = None
+        if config.endpoint:
+            if isinstance(config.endpoint, ObjectId):
+                endpoint = str(config.endpoint.id)
+            else:
+                endpoint = str(config.endpoint.id)
         return HealthCheckConfigResponseDto(
             id=str(config.id),
-            endpoint_id=str(config.endpoint.id) if config.endpoint else None,
+            endpoint_id=endpoint,
             cron=config.cron,
             status_code=config.status_code,
             body_checks=[
