@@ -15,7 +15,8 @@ class HealthCheckHistoryMapper:
             "api_status": history.api_status.value if history.api_status else None,
             "api_id": str(history.api.id) if history.api else None,
             "request_duration": history.request_duration,
-            "organisation_id": str(history.organisation.id) if history.organisation else None
+            "organisation_id": str(history.organisation.id) if history.organisation else None,
+            "created_at": history.created_at
         }
 
     @staticmethod
