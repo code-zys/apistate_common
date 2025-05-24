@@ -10,6 +10,6 @@ class UserOrganisationalUnitAbility(BaseOrganisationDocument):
     meta = {
         'collection': 'user_organisation_unit_abilities',
         'indexes': [
-            {'fields': ['user', 'organisation'], 'unique': True}
+            {'fields': ['user', 'organisation', 'organisational_unit'], 'unique': True}
         ]
     }
