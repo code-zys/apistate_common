@@ -8,6 +8,7 @@ class ConnectionBaseDTO(BaseDTO):
     id: Optional[str] = None
     name: str
     connector_id: str
+    environment_id: str
     description: Optional[str] = None
     credential_options: Dict
     organisational_unit_id: Optional[str] = None

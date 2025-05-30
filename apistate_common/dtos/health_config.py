@@ -10,10 +10,8 @@ class RequestBodyCheckDto(BaseModel):
 
 class HealthCheckConfigCreateDto(BaseModel):
     """DTO for creating a health check configuration"""
-    endpoint: Optional[str] = None
+    endpoint: str
     cron: str
-    status_code: int
-    body_checks: List[RequestBodyCheckDto] = []
     api: str
     path_params_data: Optional[dict] = {}
     query_params_data: Optional[dict] = {}

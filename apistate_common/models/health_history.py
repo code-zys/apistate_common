@@ -1,4 +1,4 @@
-from mongoengine import DateTimeField, IntField, DictField, ReferenceField, EnumField
+from mongoengine import DateTimeField, IntField, DictField, ReferenceField, EnumField, ListField, StringField
 from .base import BaseOrganisationDocument
 from ..enums.api_status import APIStatus
 
@@ -10,7 +10,7 @@ class HealthCheckHistory(BaseOrganisationDocument):
     req_status = IntField(required=True)
     request = DictField()
     response = DictField()
-    api_status = EnumField(APIStatus)
+    api_status = ListField(StringField(choices=[status.value for status in APIStatus]), required=True)
     api = ReferenceField('API', required=True)
     request_duration = IntField(required=True)
     #TODO: start/pause health check
@@ -18,7 +18,7 @@ class HealthCheckHistory(BaseOrganisationDocument):
         'collection': 'health_check_histories',
         'timeseries': {
             'timeField': 'timestamp',
-            'metaField': 'config', #TODO: check if this is correct
+            'metaField': 'config',
             'granularity': 'seconds'
         }
     }

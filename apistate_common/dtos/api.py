@@ -11,6 +11,7 @@ class APIBaseDto(BaseDTO):
     connection_id: str = Field(..., description="Connection ID")
     connector_id: str = Field(..., description="Connector ID")
     url: Optional[str] = Field(None, description="API URL")
+    health_check: Optional[dict] = Field(None, description="Health check configuration")
 
 class APICreateDto(APIBaseDto):
     """DTO for creating a new API."""

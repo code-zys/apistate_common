@@ -1,5 +1,5 @@
 from ..models.health_history import HealthCheckHistory
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 class HealthCheckHistoryMapper:
     @staticmethod
@@ -12,7 +12,7 @@ class HealthCheckHistoryMapper:
             "req_status": history.req_status,
             "request": history.request,
             "response": history.response,
-            "api_status": history.api_status.value if history.api_status else None,
+            "api_status": [status.value for status in history.api_status] if history.api_status else None,
             "api_id": str(history.api.id) if history.api else None,
             "request_duration": history.request_duration,
             "organisation_id": str(history.organisation.id) if history.organisation else None,
@@ -28,7 +28,7 @@ class HealthCheckHistoryMapper:
             req_status=data.get("req_status"),
             request=data.get("request", {}),
             response=data.get("response", {}),
-            api_status=data.get("api_status"),
+            api_status=data.get("api_status", []),
             api=data.get("api_id"),
             request_duration=data.get("request_duration"),
             organisation=data.get("organisation_id")
