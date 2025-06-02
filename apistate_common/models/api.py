@@ -17,6 +17,7 @@ class APIHealthCheck(EmbeddedDocument):
     """Embedded document for API health check configuration."""
     path = StringField(required=True)
     method = StringField(required=True)
+    params = DictField()
     interval = StringField(required=True)
     status_mapping = DictField(field=EmbeddedDocumentField(StatusMapping))
 
@@ -32,13 +33,13 @@ class SwaggerConnection(EmbeddedDocument):
 
 class API(BaseOrganisationDocument):
     """API model representing an API within a project."""
-    name = StringField()
+    name = StringField(required=True)
     version = StringField()
-    api_connection = EmbeddedDocumentField(APIConnection)
-    region = StringField()
-    external_id = StringField()
+    api_connection = EmbeddedDocumentField(APIConnection, required=True)
+    region = StringField(required=True)
+    external_id = StringField(required=True)
     swagger_connection = EmbeddedDocumentField(SwaggerConnection)
-    health_check_config = EmbeddedDocumentField(APIHealthCheck)
+    health_check = EmbeddedDocumentField(APIHealthCheck)  # Renamed from health_check_config to match JSON
     project = ReferenceField('Project')
     connection = ReferenceField('Connection', required=True)
     connector = ReferenceField('Connector', required=True)

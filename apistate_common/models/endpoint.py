@@ -1,5 +1,5 @@
 from .base import BaseOrganisationDocument
-from mongoengine import StringField, ReferenceField, ListField, DictField
+from mongoengine import StringField, ReferenceField, ListField, DictField, BooleanField
 from apistate_common.enums.endpoint_method_type import EndpointMethodType
 
 class Endpoint(BaseOrganisationDocument):
@@ -7,6 +7,7 @@ class Endpoint(BaseOrganisationDocument):
     """
     path = StringField(required=True)
     method = StringField(choices=[e.value for e in EndpointMethodType])
+    is_health_check = BooleanField(default=False, required=True)
     resource_id = StringField()
     query_params = ListField(StringField())
     path_params = ListField(StringField())
