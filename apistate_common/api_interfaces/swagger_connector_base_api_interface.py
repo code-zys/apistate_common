@@ -37,7 +37,7 @@ class SwaggerConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
         for path, method_name, methods in routes:
             self.app.add_api_route(
                 path,
-                ConnectorAPITypeChecker.wrap_method(ConnectorBaseAPIInterface, self, method_name),
+                ConnectorAPITypeChecker.wrap_method(SwaggerConnectorBaseAPIInterface, self, method_name),
                 methods=methods
             )
 
