@@ -30,8 +30,6 @@ class HealthCheckConfigResponseDto(BaseModel):
     id: str
     endpoint_id: Optional[str]
     cron: str
-    status_code: int
-    body_checks: List[RequestBodyCheckDto]
     api_id: str    
     created_at: Optional[int] = None
     path_params_data: dict = {}
