@@ -34,6 +34,7 @@ class SwaggerConnection(EmbeddedDocument):
 class API(BaseOrganisationDocument):
     """API model representing an API within a project."""
     name = StringField(required=True)
+    description = StringField()
     version = StringField()
     url = StringField()
     api_connection = EmbeddedDocumentField(APIConnection, required=True)
