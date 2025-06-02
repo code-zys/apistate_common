@@ -15,7 +15,7 @@ class HealthCheckConfigMapper:
             id=str(config.id),
             endpoint_id=endpoint,
             cron=config.cron,
-            status_code=config.status_code,
+            # status_code=config.status_code,
             body_checks=[
                 RequestBodyCheckDto(
                     path=check.path,

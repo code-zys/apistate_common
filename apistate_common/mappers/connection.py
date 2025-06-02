@@ -19,6 +19,7 @@ class ConnectionMapper(BaseMapper):
             organisational_unit_id=str(connection.organisational_unit) if isinstance(connection.organisational_unit, (str, ObjectId)) else str(connection.organisational_unit.id) if connection.organisational_unit else None,
             created_at=connection.created_at,
             updated_at=connection.updated_at,
+            environment_id=connection.environment.id,
             status=connection.status,
             last_refresh_date=connection.last_refresh_date,
             expiration_date=connection.expiration_date
