@@ -19,7 +19,7 @@ class APIHealthCheck(EmbeddedDocument):
     method = StringField(required=True)
     params = DictField()
     interval = StringField(required=True)
-    status_mapping = EmbeddedDocumentField(StatusMapping, required=True)
+    status_mapping = DictField(field=EmbeddedDocumentField(StatusMapping))
 
 class APIConnection(EmbeddedDocument):
     """Embedded document for API connection configuration."""
