@@ -1,4 +1,4 @@
-from mongoengine import StringField, ReferenceField, DictField, EmbeddedDocumentField, ListField, EmbeddedDocument
+from mongoengine import StringField, ReferenceField, DictField, EmbeddedDocumentField, ListField, EmbeddedDocument, MapField
 from .base import BaseOrganisationDocument
 from ..enums.api_status import APIStatus
 
@@ -19,7 +19,7 @@ class APIHealthCheck(EmbeddedDocument):
     method = StringField(required=True)
     params = DictField()
     interval = StringField(required=True)
-    status_mapping = DictField(field=EmbeddedDocumentField(StatusMapping))
+    status_mapping = MapField(field=EmbeddedDocumentField(StatusMapping))
 
 class APIConnection(EmbeddedDocument):
     """Embedded document for API connection configuration."""
