@@ -28,8 +28,8 @@ class HubConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
     def _register_routes(self):
         routes = [
             ("/health", "health_check", ["GET"]),
-            ("/credentials/check", "check_credentials", ["POST"]),
-            ("/get-swagger", "get_swagger_file", ["POST"]),
+            ("/credentials/check", "check_credentials", ["GET"]),
+            ("/get-swagger", "get_swagger_file", ["GET"]),
         ]
 
         for path, method_name, methods in routes:
