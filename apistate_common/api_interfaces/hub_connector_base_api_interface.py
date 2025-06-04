@@ -12,12 +12,10 @@ from ..dtos.orchestration_result import OrchestrationResult
 
 CredentialsType = TypeVar('CredentialsType')
 
-class SwaggerConnector(BaseModel):
-    url: str 
-    bucket: str
-    object_key: str
+class FileObject(BaseModel):
+    connection_id: str
 
-class SwaggerConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
+class HubConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
     def __init__(self, app: FastAPI = None):
         """Initialize the connector with an optional FastAPI instance.
         
@@ -54,7 +52,7 @@ class SwaggerConnectorBaseAPIInterface(ABC, Generic[CredentialsType]):
         pass
 
     @abstractmethod
-    async def get_swagger_file(self, connection_id: str, data: SwaggerConnector) -> Dict:
+    async def get_swagger_file(self, data: FileObject) -> Dict:
         """Retrieve Swagger file """
         pass
 
